@@ -2,6 +2,7 @@
 
 ## disable swap
 
+MUST disable swap if the kubelet is not properly configured to use swap
 ```bash
 sudo swapoff -a
 ```
@@ -17,4 +18,25 @@ EOF
 sudo sysctl --system
 ```
 
-##
+## verify MAC address and product_uuid are unique for every node
+
+It might not be unique in **virtual machines** and produce [error](https://github.com/kubernetes/kubeadm/issues/31)
+
+```bash
+# MAC addr
+ip link or ifconfig -a
+# product_uuid
+sudo cat /sys/class/dmi/id/product_uuid
+```
+
+## check required ports
+
+```bash
+# TCP Inbound 6443 Kubernetes API server All
+# TCP Inbound 2379-2380 etcd server client API kube-apiserver, etcd
+# TCP Inbound 10250 Kubelet API Self, Control plane
+# TCP Inbound 10259 kube-scheduler Self
+# TCP Inbound 10257 kube-controller-manager Self
+nc 127.0.0.1 6443 -v
+```
+
