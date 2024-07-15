@@ -40,3 +40,18 @@ sudo cat /sys/class/dmi/id/product_uuid
 nc 127.0.0.1 6443 -v
 ```
 
+## making kubectl work
+
+as non-root user
+
+```bash
+mkdir -p $HOME/.kube
+sudo cp -i /etc/kubernetes/admin.conf $HOME/.kube/config
+sudo chown $(id -u):$(id -g) $HOME/.kube/config
+```
+
+as root user
+
+```bash
+export KUBECONFIG=/etc/kubernetes/admin.conf
+```
