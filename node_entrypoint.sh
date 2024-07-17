@@ -2,7 +2,7 @@
 
 # get join command
 # kubeadm token create $(kubeadm token generate) --print-join-command --ttl=0
-sudo swapoff -a
+sudo swapoff -a # kubectl will fail healthy check if swap is not disabled
 sudo cat <<EOF | tee /etc/sysctl.d/k8s.conf
 net.ipv4.ip_forward = 1
 EOF
