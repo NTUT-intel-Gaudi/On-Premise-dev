@@ -14,3 +14,5 @@ sudo cp -i /etc/kubernetes/admin.conf $HOME/.kube/config
 sudo chown $(id -u):$(id -g) $HOME/.kube/config
 
 # journalctl -u kubelet -f
+kubectl apply -f calico.yaml
+kubectl get pods -A --watch
