@@ -22,5 +22,5 @@ sudo rm /etc/kubernetes/kubelet.conf
 sudo rm /etc/kubernetes/pki/ca.crt
 sudo rm /etc/kubernetes/bootstrap-kubelet.conf
 
-kubectl apply -f calico.yaml
-kubectl get pods -A --watch
+# kubectl apply -f calico.yaml
+# kubectl get pods -A --watch
