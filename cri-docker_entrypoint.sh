@@ -1,4 +1,6 @@
 #!bin/sh
+set -euo pipefail
+
 sudo swapoff -a
 sudo cat <<EOF | sudo tee /etc/sysctl.d/k8s.conf
 net.ipv4.ip_forward = 1

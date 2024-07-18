@@ -1,4 +1,5 @@
 #!bin/sh
+set -euo pipefail
 
 # get join command
 # kubeadm token create $(kubeadm token generate) --print-join-command --ttl=0
