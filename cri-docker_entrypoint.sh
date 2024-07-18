@@ -1,6 +1,6 @@
 #!bin/sh
 sudo swapoff -a
-sudo cat <<EOF | tee /etc/sysctl.d/k8s.conf
+sudo cat <<EOF | sudo tee /etc/sysctl.d/k8s.conf
 net.ipv4.ip_forward = 1
 EOF
 
