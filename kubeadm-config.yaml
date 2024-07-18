@@ -1,9 +1,12 @@
 # kubeadm-config.yaml
+#
+# Available config types: InitConfiguration, ClusterConfiguration, KubeProxyConfiguration, KubeletConfiguration,
+# only one between InitConfiguration and ClusterConfiguration is mandatory.
+#
 # kind: InitConfiguration
 # kind: ClusterConfiguration
-# kind: KubeletConfiguration
 # kind: KubeProxyConfiguration
-# kind: JoinConfiguration
+# kind: KubeletConfiguration
 
 apiVersion: kubeadm.k8s.io/v1beta3
 kind: InitConfiguration
