@@ -42,6 +42,7 @@ skipPhases:
 ---
 apiVersion: kubeadm.k8s.io/v1beta3
 kind: ClusterConfiguration
+kubernetesVersion: v1.30.0
 etcd:
   # one of local or external
   local:
@@ -65,7 +66,6 @@ networking:
   serviceSubnet: "10.96.0.0/16"
   podSubnet: "10.244.0.0/24"
   dnsDomain: "cluster.local"
-kubernetesVersion: "v1.21.0"
 controlPlaneEndpoint: "10.100.0.1:6443"
 apiServer:
   extraArgs:
