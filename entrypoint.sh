@@ -1,6 +1,9 @@
 #!bin/sh
 set -euo pipefail
 
+THIS_SCRIPT_PATH=$(cd "$(dirname "$0")" && pwd)
+cd "$THIS_SCRIPT_PATH"
+
 swapoff -a
 cat <<EOF | tee /etc/sysctl.d/k8s.conf
 net.ipv4.ip_forward = 1

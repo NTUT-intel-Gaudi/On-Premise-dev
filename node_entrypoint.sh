@@ -1,6 +1,9 @@
 #!bin/sh
 set -euo pipefail
 
+THIS_SCRIPT_PATH=$(cd "$(dirname "$0")" && pwd)
+cd "$THIS_SCRIPT_PATH"
+
 # get join command
 # kubeadm token create $(kubeadm token generate) --print-join-command --ttl=0
 sudo swapoff -a # kubectl will fail healthy check if swap is not disabled
