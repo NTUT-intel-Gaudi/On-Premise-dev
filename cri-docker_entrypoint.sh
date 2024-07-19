@@ -1,5 +1,4 @@
 #!bin/sh
-set -euo pipefail
 
 THIS_SCRIPT_PATH=$(cd "$(dirname "$0")" && pwd)
 cd "$THIS_SCRIPT_PATH"
@@ -11,7 +10,7 @@ EOF
 
 sudo sysctl --system
 
-sudo kubeadm reset --config=kubeadm-config.yaml
+sudo kubeadm reset --cri-socket=unix:///var/run/cri-dockerd.sock --force
 sudo rm -rf /etc/cni/net.d
 sudo rm -rf /var/lib/cni/
 sudo rm $HOME/.kube/config
