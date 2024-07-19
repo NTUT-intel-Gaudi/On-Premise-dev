@@ -1,0 +1,1304 @@
+Name:                 calico-kube-controllers-564985c589-jp78t
+Namespace:            kube-system
+Priority:             2000000000
+Priority Class Name:  system-cluster-critical
+Service Account:      calico-kube-controllers
+Node:                 debian/192.168.1.55
+Start Time:           Fri, 19 Jul 2024 14:19:45 +0800
+Labels:               k8s-app=calico-kube-controllers
+                      pod-template-hash=564985c589
+Annotations:          cni.projectcalico.org/containerID: 59b95b5c9c320d03e76200608f28af88cc0728d6f912cb2cad69198be5571f07
+                      cni.projectcalico.org/podIP: 192.168.0.2/32
+                      cni.projectcalico.org/podIPs: 192.168.0.2/32
+Status:               Running
+IP:                   192.168.0.2
+IPs:
+  IP:           192.168.0.2
+Controlled By:  ReplicaSet/calico-kube-controllers-564985c589
+Containers:
+  calico-kube-controllers:
+    Container ID:   docker://a43367c9b42f49fce53b39b87d5e5f793ee39d4bf4b2ae1e5e2594275dcdc637
+    Image:          docker.io/calico/kube-controllers:v3.28.0
+    Image ID:       docker-pullable://calico/kube-controllers@sha256:8f04e4772a2b3fa752bc7fb98cc89c7fa0ab88a341115ee8c5b6faa4180053fd
+    Port:           <none>
+    Host Port:      <none>
+    State:          Running
+      Started:      Fri, 19 Jul 2024 14:19:49 +0800
+    Ready:          True
+    Restart Count:  0
+    Liveness:       exec [/usr/bin/check-status -l] delay=10s timeout=10s period=10s #success=1 #failure=6
+    Readiness:      exec [/usr/bin/check-status -r] delay=0s timeout=1s period=10s #success=1 #failure=3
+    Environment:
+      ENABLED_CONTROLLERS:  node
+      DATASTORE_TYPE:       kubernetes
+    Mounts:
+      /var/run/secrets/kubernetes.io/serviceaccount from kube-api-access-tx7zg (ro)
+Conditions:
+  Type                        Status
+  PodReadyToStartContainers   True 
+  Initialized                 True 
+  Ready                       True 
+  ContainersReady             True 
+  PodScheduled                True 
+Volumes:
+  kube-api-access-tx7zg:
+    Type:                    Projected (a volume that contains injected data from multiple sources)
+    TokenExpirationSeconds:  3607
+    ConfigMapName:           kube-root-ca.crt
+    ConfigMapOptional:       <nil>
+    DownwardAPI:             true
+QoS Class:                   BestEffort
+Node-Selectors:              kubernetes.io/os=linux
+Tolerations:                 CriticalAddonsOnly op=Exists
+                             node-role.kubernetes.io/control-plane:NoSchedule
+                             node-role.kubernetes.io/master:NoSchedule
+                             node.kubernetes.io/not-ready:NoExecute op=Exists for 300s
+                             node.kubernetes.io/unreachable:NoExecute op=Exists for 300s
+Events:
+  Type     Reason                  Age                    From               Message
+  ----     ------                  ----                   ----               -------
+  Normal   Scheduled               4m40s                  default-scheduler  Successfully assigned kube-system/calico-kube-controllers-564985c589-jp78t to debian
+  Warning  FailedCreatePodSandBox  4m40s                  kubelet            Failed to create pod sandbox: rpc error: code = Unknown desc = failed to set up sandbox container "c7e74daad90d03b75307caa988991cfd358a84cc794b33e3fe46dd5308f951d5" network for pod "calico-kube-controllers-564985c589-jp78t": networkPlugin cni failed to set up pod "calico-kube-controllers-564985c589-jp78t_kube-system" network: plugin type="calico" failed (add): error creating calico client: stat /etc/cni/net.d/calico-kubeconfig: no such file or directory
+  Warning  FailedCreatePodSandBox  4m39s                  kubelet            Failed to create pod sandbox: rpc error: code = Unknown desc = failed to set up sandbox container "ff3958f9842522d35c27095919c6ee2f39a3be5bd4bc27f54c2a20f39909b146" network for pod "calico-kube-controllers-564985c589-jp78t": networkPlugin cni failed to set up pod "calico-kube-controllers-564985c589-jp78t_kube-system" network: plugin type="calico" failed (add): error creating calico client: stat /etc/cni/net.d/calico-kubeconfig: no such file or directory
+  Warning  FailedCreatePodSandBox  4m38s                  kubelet            Failed to create pod sandbox: rpc error: code = Unknown desc = failed to set up sandbox container "2569692258b93469034ad95927fb598b3e5468103e41ce187ad10571e081b69f" network for pod "calico-kube-controllers-564985c589-jp78t": networkPlugin cni failed to set up pod "calico-kube-controllers-564985c589-jp78t_kube-system" network: plugin type="calico" failed (add): cannot find a qualified ippool
+  Normal   SandboxChanged          4m37s (x3 over 4m39s)  kubelet            Pod sandbox changed, it will be killed and re-created.
+  Normal   Pulled                  4m36s                  kubelet            Container image "docker.io/calico/kube-controllers:v3.28.0" already present on machine
+  Normal   Created                 4m36s                  kubelet            Created container calico-kube-controllers
+  Normal   Started                 4m36s                  kubelet            Started container calico-kube-controllers
+  Warning  Unhealthy               4m35s                  kubelet            Readiness probe failed: initialized to false
+
+
+Name:                 calico-node-lzngl
+Namespace:            kube-system
+Priority:             2000001000
+Priority Class Name:  system-node-critical
+Service Account:      calico-node
+Node:                 pi5/192.168.1.11
+Start Time:           Fri, 19 Jul 2024 14:21:27 +0800
+Labels:               controller-revision-hash=585f99b4f4
+                      k8s-app=calico-node
+                      pod-template-generation=1
+Annotations:          <none>
+Status:               Running
+IP:                   192.168.1.11
+IPs:
+  IP:           192.168.1.11
+Controlled By:  DaemonSet/calico-node
+Init Containers:
+  upgrade-ipam:
+    Container ID:  docker://7d6b556efd8d5a7e4d9f77f2d6bbaa8e24ae87a1bc6e0878925d0643ba4a43ae
+    Image:         docker.io/calico/cni:v3.28.0
+    Image ID:      docker-pullable://calico/cni@sha256:cef0c907b8f4cadc63701d371e6f24d325795bcf0be84d6a517e33000ff35f70
+    Port:          <none>
+    Host Port:     <none>
+    Command:
+      /opt/cni/bin/calico-ipam
+      -upgrade
+    State:          Terminated
+      Reason:       Completed
+      Exit Code:    0
+      Started:      Fri, 19 Jul 2024 14:21:29 +0800
+      Finished:     Fri, 19 Jul 2024 14:21:29 +0800
+    Ready:          True
+    Restart Count:  0
+    Environment Variables from:
+      kubernetes-services-endpoint  ConfigMap  Optional: true
+    Environment:
+      KUBERNETES_NODE_NAME:        (v1:spec.nodeName)
+      CALICO_NETWORKING_BACKEND:  <set to the key 'calico_backend' of config map 'calico-config'>  Optional: false
+    Mounts:
+      /host/opt/cni/bin from cni-bin-dir (rw)
+      /var/lib/cni/networks from host-local-net-dir (rw)
+      /var/run/secrets/kubernetes.io/serviceaccount from kube-api-access-8sx7k (ro)
+  install-cni:
+    Container ID:  docker://f6537346d1ac09484c4579b20af69818fd6c1d2cb2a4a6b909abca28c8f7956f
+    Image:         docker.io/calico/cni:v3.28.0
+    Image ID:      docker-pullable://calico/cni@sha256:cef0c907b8f4cadc63701d371e6f24d325795bcf0be84d6a517e33000ff35f70
+    Port:          <none>
+    Host Port:     <none>
+    Command:
+      /opt/cni/bin/install
+    State:          Terminated
+      Reason:       Completed
+      Exit Code:    0
+      Started:      Fri, 19 Jul 2024 14:21:30 +0800
+      Finished:     Fri, 19 Jul 2024 14:21:30 +0800
+    Ready:          True
+    Restart Count:  0
+    Environment Variables from:
+      kubernetes-services-endpoint  ConfigMap  Optional: true
+    Environment:
+      CNI_CONF_NAME:         10-calico.conflist
+      CNI_NETWORK_CONFIG:    <set to the key 'cni_network_config' of config map 'calico-config'>  Optional: false
+      KUBERNETES_NODE_NAME:   (v1:spec.nodeName)
+      CNI_MTU:               <set to the key 'veth_mtu' of config map 'calico-config'>  Optional: false
+      SLEEP:                 false
+    Mounts:
+      /host/etc/cni/net.d from cni-net-dir (rw)
+      /host/opt/cni/bin from cni-bin-dir (rw)
+      /var/run/secrets/kubernetes.io/serviceaccount from kube-api-access-8sx7k (ro)
+  mount-bpffs:
+    Container ID:  docker://b803847f6d1e9d0566d22c21470f945ab1b54e68b75906094083cd649fff03cb
+    Image:         docker.io/calico/node:v3.28.0
+    Image ID:      docker-pullable://calico/node@sha256:385bf6391fea031649b8575799248762a2caece86e6e3f33ffee19c0c096e6a8
+    Port:          <none>
+    Host Port:     <none>
+    Command:
+      calico-node
+      -init
+      -best-effort
+    State:          Terminated
+      Reason:       Completed
+      Exit Code:    0
+      Started:      Fri, 19 Jul 2024 14:21:31 +0800
+      Finished:     Fri, 19 Jul 2024 14:21:31 +0800
+    Ready:          True
+    Restart Count:  0
+    Environment:    <none>
+    Mounts:
+      /nodeproc from nodeproc (ro)
+      /sys/fs from sys-fs (rw)
+      /var/run/calico from var-run-calico (rw)
+      /var/run/secrets/kubernetes.io/serviceaccount from kube-api-access-8sx7k (ro)
+Containers:
+  calico-node:
+    Container ID:   docker://d72c1df2adf676c849985e3c15b2dce909caa1cf0916901198c75dea6ad92fe3
+    Image:          docker.io/calico/node:v3.28.0
+    Image ID:       docker-pullable://calico/node@sha256:385bf6391fea031649b8575799248762a2caece86e6e3f33ffee19c0c096e6a8
+    Port:           <none>
+    Host Port:      <none>
+    State:          Running
+      Started:      Fri, 19 Jul 2024 14:21:32 +0800
+    Ready:          True
+    Restart Count:  0
+    Requests:
+      cpu:      250m
+    Liveness:   exec [/bin/calico-node -felix-live -bird-live] delay=10s timeout=10s period=10s #success=1 #failure=6
+    Readiness:  exec [/bin/calico-node -felix-ready -bird-ready] delay=0s timeout=10s period=10s #success=1 #failure=3
+    Environment Variables from:
+      kubernetes-services-endpoint  ConfigMap  Optional: true
+    Environment:
+      DATASTORE_TYPE:                     kubernetes
+      FELIX_TYPHAK8SSERVICENAME:          <set to the key 'typha_service_name' of config map 'calico-config'>  Optional: false
+      WAIT_FOR_DATASTORE:                 true
+      NODENAME:                            (v1:spec.nodeName)
+      CALICO_NETWORKING_BACKEND:          <set to the key 'calico_backend' of config map 'calico-config'>  Optional: false
+      CLUSTER_TYPE:                       k8s,bgp
+      IP:                                 autodetect
+      CALICO_IPV4POOL_IPIP:               Always
+      CALICO_IPV4POOL_VXLAN:              Never
+      CALICO_IPV6POOL_VXLAN:              Never
+      FELIX_IPINIPMTU:                    <set to the key 'veth_mtu' of config map 'calico-config'>  Optional: false
+      FELIX_VXLANMTU:                     <set to the key 'veth_mtu' of config map 'calico-config'>  Optional: false
+      FELIX_WIREGUARDMTU:                 <set to the key 'veth_mtu' of config map 'calico-config'>  Optional: false
+      CALICO_DISABLE_FILE_LOGGING:        true
+      FELIX_DEFAULTENDPOINTTOHOSTACTION:  ACCEPT
+      FELIX_IPV6SUPPORT:                  false
+      FELIX_HEALTHENABLED:                true
+    Mounts:
+      /host/etc/cni/net.d from cni-net-dir (rw)
+      /lib/modules from lib-modules (ro)
+      /run/xtables.lock from xtables-lock (rw)
+      /sys/fs/bpf from bpffs (rw)
+      /var/lib/calico from var-lib-calico (rw)
+      /var/log/calico/cni from cni-log-dir (ro)
+      /var/run/calico from var-run-calico (rw)
+      /var/run/nodeagent from policysync (rw)
+      /var/run/secrets/kubernetes.io/serviceaccount from kube-api-access-8sx7k (ro)
+Conditions:
+  Type                        Status
+  PodReadyToStartContainers   True 
+  Initialized                 True 
+  Ready                       True 
+  ContainersReady             True 
+  PodScheduled                True 
+Volumes:
+  lib-modules:
+    Type:          HostPath (bare host directory volume)
+    Path:          /lib/modules
+    HostPathType:  
+  var-run-calico:
+    Type:          HostPath (bare host directory volume)
+    Path:          /var/run/calico
+    HostPathType:  
+  var-lib-calico:
+    Type:          HostPath (bare host directory volume)
+    Path:          /var/lib/calico
+    HostPathType:  
+  xtables-lock:
+    Type:          HostPath (bare host directory volume)
+    Path:          /run/xtables.lock
+    HostPathType:  FileOrCreate
+  sys-fs:
+    Type:          HostPath (bare host directory volume)
+    Path:          /sys/fs/
+    HostPathType:  DirectoryOrCreate
+  bpffs:
+    Type:          HostPath (bare host directory volume)
+    Path:          /sys/fs/bpf
+    HostPathType:  Directory
+  nodeproc:
+    Type:          HostPath (bare host directory volume)
+    Path:          /proc
+    HostPathType:  
+  cni-bin-dir:
+    Type:          HostPath (bare host directory volume)
+    Path:          /opt/cni/bin
+    HostPathType:  
+  cni-net-dir:
+    Type:          HostPath (bare host directory volume)
+    Path:          /etc/cni/net.d
+    HostPathType:  
+  cni-log-dir:
+    Type:          HostPath (bare host directory volume)
+    Path:          /var/log/calico/cni
+    HostPathType:  
+  host-local-net-dir:
+    Type:          HostPath (bare host directory volume)
+    Path:          /var/lib/cni/networks
+    HostPathType:  
+  policysync:
+    Type:          HostPath (bare host directory volume)
+    Path:          /var/run/nodeagent
+    HostPathType:  DirectoryOrCreate
+  kube-api-access-8sx7k:
+    Type:                    Projected (a volume that contains injected data from multiple sources)
+    TokenExpirationSeconds:  3607
+    ConfigMapName:           kube-root-ca.crt
+    ConfigMapOptional:       <nil>
+    DownwardAPI:             true
+QoS Class:                   Burstable
+Node-Selectors:              kubernetes.io/os=linux
+Tolerations:                 :NoSchedule op=Exists
+                             :NoExecute op=Exists
+                             CriticalAddonsOnly op=Exists
+                             node.kubernetes.io/disk-pressure:NoSchedule op=Exists
+                             node.kubernetes.io/memory-pressure:NoSchedule op=Exists
+                             node.kubernetes.io/network-unavailable:NoSchedule op=Exists
+                             node.kubernetes.io/not-ready:NoExecute op=Exists
+                             node.kubernetes.io/pid-pressure:NoSchedule op=Exists
+                             node.kubernetes.io/unreachable:NoExecute op=Exists
+                             node.kubernetes.io/unschedulable:NoSchedule op=Exists
+Events:
+  Type    Reason     Age    From               Message
+  ----    ------     ----   ----               -------
+  Normal  Scheduled  3m     default-scheduler  Successfully assigned kube-system/calico-node-lzngl to pi5
+  Normal  Pulled     2m57s  kubelet            Container image "docker.io/calico/cni:v3.28.0" already present on machine
+  Normal  Created    2m56s  kubelet            Created container upgrade-ipam
+  Normal  Started    2m56s  kubelet            Started container upgrade-ipam
+  Normal  Pulled     2m56s  kubelet            Container image "docker.io/calico/cni:v3.28.0" already present on machine
+  Normal  Created    2m55s  kubelet            Created container install-cni
+  Normal  Started    2m55s  kubelet            Started container install-cni
+  Normal  Pulled     2m55s  kubelet            Container image "docker.io/calico/node:v3.28.0" already present on machine
+  Normal  Created    2m54s  kubelet            Created container mount-bpffs
+  Normal  Started    2m54s  kubelet            Started container mount-bpffs
+  Normal  Pulled     2m54s  kubelet            Container image "docker.io/calico/node:v3.28.0" already present on machine
+  Normal  Created    2m53s  kubelet            Created container calico-node
+  Normal  Started    2m53s  kubelet            Started container calico-node
+
+
+Name:                 calico-node-tgrgr
+Namespace:            kube-system
+Priority:             2000001000
+Priority Class Name:  system-node-critical
+Service Account:      calico-node
+Node:                 debian/192.168.1.55
+Start Time:           Fri, 19 Jul 2024 14:19:44 +0800
+Labels:               controller-revision-hash=585f99b4f4
+                      k8s-app=calico-node
+                      pod-template-generation=1
+Annotations:          <none>
+Status:               Running
+IP:                   192.168.1.55
+IPs:
+  IP:           192.168.1.55
+Controlled By:  DaemonSet/calico-node
+Init Containers:
+  upgrade-ipam:
+    Container ID:  docker://70a158d606498353c79c63a9de11ebbc55d7a667599f2187cc0a99e5635d48bc
+    Image:         docker.io/calico/cni:v3.28.0
+    Image ID:      docker-pullable://calico/cni@sha256:cef0c907b8f4cadc63701d371e6f24d325795bcf0be84d6a517e33000ff35f70
+    Port:          <none>
+    Host Port:     <none>
+    Command:
+      /opt/cni/bin/calico-ipam
+      -upgrade
+    State:          Terminated
+      Reason:       Completed
+      Exit Code:    0
+      Started:      Fri, 19 Jul 2024 14:19:45 +0800
+      Finished:     Fri, 19 Jul 2024 14:19:45 +0800
+    Ready:          True
+    Restart Count:  0
+    Environment Variables from:
+      kubernetes-services-endpoint  ConfigMap  Optional: true
+    Environment:
+      KUBERNETES_NODE_NAME:        (v1:spec.nodeName)
+      CALICO_NETWORKING_BACKEND:  <set to the key 'calico_backend' of config map 'calico-config'>  Optional: false
+    Mounts:
+      /host/opt/cni/bin from cni-bin-dir (rw)
+      /var/lib/cni/networks from host-local-net-dir (rw)
+      /var/run/secrets/kubernetes.io/serviceaccount from kube-api-access-27xfj (ro)
+  install-cni:
+    Container ID:  docker://a96fda324eb43418048ad10e5f63858d1050a1f51c56bfa50099ce963c0ae3ef
+    Image:         docker.io/calico/cni:v3.28.0
+    Image ID:      docker-pullable://calico/cni@sha256:cef0c907b8f4cadc63701d371e6f24d325795bcf0be84d6a517e33000ff35f70
+    Port:          <none>
+    Host Port:     <none>
+    Command:
+      /opt/cni/bin/install
+    State:          Terminated
+      Reason:       Completed
+      Exit Code:    0
+      Started:      Fri, 19 Jul 2024 14:19:46 +0800
+      Finished:     Fri, 19 Jul 2024 14:19:46 +0800
+    Ready:          True
+    Restart Count:  0
+    Environment Variables from:
+      kubernetes-services-endpoint  ConfigMap  Optional: true
+    Environment:
+      CNI_CONF_NAME:         10-calico.conflist
+      CNI_NETWORK_CONFIG:    <set to the key 'cni_network_config' of config map 'calico-config'>  Optional: false
+      KUBERNETES_NODE_NAME:   (v1:spec.nodeName)
+      CNI_MTU:               <set to the key 'veth_mtu' of config map 'calico-config'>  Optional: false
+      SLEEP:                 false
+    Mounts:
+      /host/etc/cni/net.d from cni-net-dir (rw)
+      /host/opt/cni/bin from cni-bin-dir (rw)
+      /var/run/secrets/kubernetes.io/serviceaccount from kube-api-access-27xfj (ro)
+  mount-bpffs:
+    Container ID:  docker://dbb01f6827d0c227efe2a8e5749f077470da663ff652379529b38b79b118eff1
+    Image:         docker.io/calico/node:v3.28.0
+    Image ID:      docker-pullable://calico/node@sha256:385bf6391fea031649b8575799248762a2caece86e6e3f33ffee19c0c096e6a8
+    Port:          <none>
+    Host Port:     <none>
+    Command:
+      calico-node
+      -init
+      -best-effort
+    State:          Terminated
+      Reason:       Completed
+      Exit Code:    0
+      Started:      Fri, 19 Jul 2024 14:19:47 +0800
+      Finished:     Fri, 19 Jul 2024 14:19:47 +0800
+    Ready:          True
+    Restart Count:  0
+    Environment:    <none>
+    Mounts:
+      /nodeproc from nodeproc (ro)
+      /sys/fs from sys-fs (rw)
+      /var/run/calico from var-run-calico (rw)
+      /var/run/secrets/kubernetes.io/serviceaccount from kube-api-access-27xfj (ro)
+Containers:
+  calico-node:
+    Container ID:   docker://33223ec870ed8ed427a437d911f5aabe5c062dc8cd12f268add161db1a3d28b5
+    Image:          docker.io/calico/node:v3.28.0
+    Image ID:       docker-pullable://calico/node@sha256:385bf6391fea031649b8575799248762a2caece86e6e3f33ffee19c0c096e6a8
+    Port:           <none>
+    Host Port:      <none>
+    State:          Running
+      Started:      Fri, 19 Jul 2024 14:19:48 +0800
+    Ready:          True
+    Restart Count:  0
+    Requests:
+      cpu:      250m
+    Liveness:   exec [/bin/calico-node -felix-live -bird-live] delay=10s timeout=10s period=10s #success=1 #failure=6
+    Readiness:  exec [/bin/calico-node -felix-ready -bird-ready] delay=0s timeout=10s period=10s #success=1 #failure=3
+    Environment Variables from:
+      kubernetes-services-endpoint  ConfigMap  Optional: true
+    Environment:
+      DATASTORE_TYPE:                     kubernetes
+      FELIX_TYPHAK8SSERVICENAME:          <set to the key 'typha_service_name' of config map 'calico-config'>  Optional: false
+      WAIT_FOR_DATASTORE:                 true
+      NODENAME:                            (v1:spec.nodeName)
+      CALICO_NETWORKING_BACKEND:          <set to the key 'calico_backend' of config map 'calico-config'>  Optional: false
+      CLUSTER_TYPE:                       k8s,bgp
+      IP:                                 autodetect
+      CALICO_IPV4POOL_IPIP:               Always
+      CALICO_IPV4POOL_VXLAN:              Never
+      CALICO_IPV6POOL_VXLAN:              Never
+      FELIX_IPINIPMTU:                    <set to the key 'veth_mtu' of config map 'calico-config'>  Optional: false
+      FELIX_VXLANMTU:                     <set to the key 'veth_mtu' of config map 'calico-config'>  Optional: false
+      FELIX_WIREGUARDMTU:                 <set to the key 'veth_mtu' of config map 'calico-config'>  Optional: false
+      CALICO_DISABLE_FILE_LOGGING:        true
+      FELIX_DEFAULTENDPOINTTOHOSTACTION:  ACCEPT
+      FELIX_IPV6SUPPORT:                  false
+      FELIX_HEALTHENABLED:                true
+    Mounts:
+      /host/etc/cni/net.d from cni-net-dir (rw)
+      /lib/modules from lib-modules (ro)
+      /run/xtables.lock from xtables-lock (rw)
+      /sys/fs/bpf from bpffs (rw)
+      /var/lib/calico from var-lib-calico (rw)
+      /var/log/calico/cni from cni-log-dir (ro)
+      /var/run/calico from var-run-calico (rw)
+      /var/run/nodeagent from policysync (rw)
+      /var/run/secrets/kubernetes.io/serviceaccount from kube-api-access-27xfj (ro)
+Conditions:
+  Type                        Status
+  PodReadyToStartContainers   True 
+  Initialized                 True 
+  Ready                       True 
+  ContainersReady             True 
+  PodScheduled                True 
+Volumes:
+  lib-modules:
+    Type:          HostPath (bare host directory volume)
+    Path:          /lib/modules
+    HostPathType:  
+  var-run-calico:
+    Type:          HostPath (bare host directory volume)
+    Path:          /var/run/calico
+    HostPathType:  
+  var-lib-calico:
+    Type:          HostPath (bare host directory volume)
+    Path:          /var/lib/calico
+    HostPathType:  
+  xtables-lock:
+    Type:          HostPath (bare host directory volume)
+    Path:          /run/xtables.lock
+    HostPathType:  FileOrCreate
+  sys-fs:
+    Type:          HostPath (bare host directory volume)
+    Path:          /sys/fs/
+    HostPathType:  DirectoryOrCreate
+  bpffs:
+    Type:          HostPath (bare host directory volume)
+    Path:          /sys/fs/bpf
+    HostPathType:  Directory
+  nodeproc:
+    Type:          HostPath (bare host directory volume)
+    Path:          /proc
+    HostPathType:  
+  cni-bin-dir:
+    Type:          HostPath (bare host directory volume)
+    Path:          /opt/cni/bin
+    HostPathType:  
+  cni-net-dir:
+    Type:          HostPath (bare host directory volume)
+    Path:          /etc/cni/net.d
+    HostPathType:  
+  cni-log-dir:
+    Type:          HostPath (bare host directory volume)
+    Path:          /var/log/calico/cni
+    HostPathType:  
+  host-local-net-dir:
+    Type:          HostPath (bare host directory volume)
+    Path:          /var/lib/cni/networks
+    HostPathType:  
+  policysync:
+    Type:          HostPath (bare host directory volume)
+    Path:          /var/run/nodeagent
+    HostPathType:  DirectoryOrCreate
+  kube-api-access-27xfj:
+    Type:                    Projected (a volume that contains injected data from multiple sources)
+    TokenExpirationSeconds:  3607
+    ConfigMapName:           kube-root-ca.crt
+    ConfigMapOptional:       <nil>
+    DownwardAPI:             true
+QoS Class:                   Burstable
+Node-Selectors:              kubernetes.io/os=linux
+Tolerations:                 :NoSchedule op=Exists
+                             :NoExecute op=Exists
+                             CriticalAddonsOnly op=Exists
+                             node.kubernetes.io/disk-pressure:NoSchedule op=Exists
+                             node.kubernetes.io/memory-pressure:NoSchedule op=Exists
+                             node.kubernetes.io/network-unavailable:NoSchedule op=Exists
+                             node.kubernetes.io/not-ready:NoExecute op=Exists
+                             node.kubernetes.io/pid-pressure:NoSchedule op=Exists
+                             node.kubernetes.io/unreachable:NoExecute op=Exists
+                             node.kubernetes.io/unschedulable:NoSchedule op=Exists
+Events:
+  Type     Reason     Age                    From               Message
+  ----     ------     ----                   ----               -------
+  Normal   Scheduled  4m41s                  default-scheduler  Successfully assigned kube-system/calico-node-tgrgr to debian
+  Normal   Pulled     4m40s                  kubelet            Container image "docker.io/calico/cni:v3.28.0" already present on machine
+  Normal   Created    4m40s                  kubelet            Created container upgrade-ipam
+  Normal   Started    4m40s                  kubelet            Started container upgrade-ipam
+  Normal   Pulled     4m39s                  kubelet            Container image "docker.io/calico/cni:v3.28.0" already present on machine
+  Normal   Created    4m39s                  kubelet            Created container install-cni
+  Normal   Started    4m39s                  kubelet            Started container install-cni
+  Normal   Pulled     4m38s                  kubelet            Container image "docker.io/calico/node:v3.28.0" already present on machine
+  Normal   Created    4m38s                  kubelet            Created container mount-bpffs
+  Normal   Started    4m38s                  kubelet            Started container mount-bpffs
+  Normal   Pulled     4m37s                  kubelet            Container image "docker.io/calico/node:v3.28.0" already present on machine
+  Normal   Created    4m37s                  kubelet            Created container calico-node
+  Normal   Started    4m37s                  kubelet            Started container calico-node
+  Warning  Unhealthy  4m35s (x2 over 4m36s)  kubelet            Readiness probe failed: calico/node is not ready: BIRD is not ready: Error querying BIRD: unable to connect to BIRDv4 socket: dial unix /var/run/calico/bird.ctl: connect: connection refused
+  Warning  Unhealthy  2m50s                  kubelet            Readiness probe failed: 2024-07-19 06:21:35.340 [INFO][741] confd/health.go 202: Number of node(s) with BGP peering established = 0
+calico/node is not ready: BIRD is not ready: BGP not established with 192.168.1.11
+
+
+Name:                 calico-typha-cd69879f5-pjqql
+Namespace:            kube-system
+Priority:             2000000000
+Priority Class Name:  system-cluster-critical
+Service Account:      calico-node
+Node:                 debian/192.168.1.55
+Start Time:           Fri, 19 Jul 2024 14:19:45 +0800
+Labels:               k8s-app=calico-typha
+                      pod-template-hash=cd69879f5
+Annotations:          cluster-autoscaler.kubernetes.io/safe-to-evict: true
+Status:               Running
+IP:                   192.168.1.55
+IPs:
+  IP:           192.168.1.55
+Controlled By:  ReplicaSet/calico-typha-cd69879f5
+Containers:
+  calico-typha:
+    Container ID:   docker://a2a34ca786bbed8e4e862109fa39f35441556403094c39f44fcf92b89d67a26d
+    Image:          docker.io/calico/typha:v3.28.0
+    Image ID:       docker-pullable://calico/typha@sha256:77677c3b2614923988960151008ffc876582c722199e4b0a9a084a70b6539637
+    Port:           5473/TCP
+    Host Port:      5473/TCP
+    State:          Running
+      Started:      Fri, 19 Jul 2024 14:19:45 +0800
+    Ready:          True
+    Restart Count:  0
+    Liveness:       http-get http://localhost:9098/liveness delay=30s timeout=10s period=30s #success=1 #failure=3
+    Readiness:      http-get http://localhost:9098/readiness delay=0s timeout=10s period=10s #success=1 #failure=3
+    Environment Variables from:
+      kubernetes-services-endpoint  ConfigMap  Optional: true
+    Environment:
+      TYPHA_LOGSEVERITYSCREEN:          info
+      TYPHA_LOGFILEPATH:                none
+      TYPHA_LOGSEVERITYSYS:             none
+      TYPHA_CONNECTIONREBALANCINGMODE:  kubernetes
+      TYPHA_DATASTORETYPE:              kubernetes
+      TYPHA_HEALTHENABLED:              true
+      TYPHA_SHUTDOWNTIMEOUTSECS:        300
+    Mounts:
+      /var/run/secrets/kubernetes.io/serviceaccount from kube-api-access-n5spp (ro)
+Conditions:
+  Type                        Status
+  PodReadyToStartContainers   True 
+  Initialized                 True 
+  Ready                       True 
+  ContainersReady             True 
+  PodScheduled                True 
+Volumes:
+  kube-api-access-n5spp:
+    Type:                    Projected (a volume that contains injected data from multiple sources)
+    TokenExpirationSeconds:  3607
+    ConfigMapName:           kube-root-ca.crt
+    ConfigMapOptional:       <nil>
+    DownwardAPI:             true
+QoS Class:                   BestEffort
+Node-Selectors:              kubernetes.io/os=linux
+Tolerations:                 :NoSchedule op=Exists
+                             :NoExecute op=Exists
+                             CriticalAddonsOnly op=Exists
+Events:
+  Type    Reason     Age    From               Message
+  ----    ------     ----   ----               -------
+  Normal  Scheduled  4m40s  default-scheduler  Successfully assigned kube-system/calico-typha-cd69879f5-pjqql to debian
+  Normal  Pulled     4m40s  kubelet            Container image "docker.io/calico/typha:v3.28.0" already present on machine
+  Normal  Created    4m40s  kubelet            Created container calico-typha
+  Normal  Started    4m40s  kubelet            Started container calico-typha
+
+
+Name:                 coredns-7db6d8ff4d-bmdr9
+Namespace:            kube-system
+Priority:             2000000000
+Priority Class Name:  system-cluster-critical
+Service Account:      coredns
+Node:                 debian/192.168.1.55
+Start Time:           Fri, 19 Jul 2024 14:19:45 +0800
+Labels:               k8s-app=kube-dns
+                      pod-template-hash=7db6d8ff4d
+Annotations:          cni.projectcalico.org/containerID: 8363a6bb24579a3831ec9d5844df499307ea3374728fb47c17d571e9fac9e3fd
+                      cni.projectcalico.org/podIP: 192.168.0.3/32
+                      cni.projectcalico.org/podIPs: 192.168.0.3/32
+Status:               Running
+IP:                   192.168.0.3
+IPs:
+  IP:           192.168.0.3
+Controlled By:  ReplicaSet/coredns-7db6d8ff4d
+Containers:
+  coredns:
+    Container ID:  docker://619b0fee80f6a7d721fa058f967cdf73a47a6dde695d6ab04606f43b1c48b496
+    Image:         registry.k8s.io/coredns/coredns:v1.11.1
+    Image ID:      docker-pullable://registry.k8s.io/coredns/coredns@sha256:1eeb4c7316bacb1d4c8ead65571cd92dd21e27359f0d4917f1a5822a73b75db1
+    Ports:         53/UDP, 53/TCP, 9153/TCP
+    Host Ports:    0/UDP, 0/TCP, 0/TCP
+    Args:
+      -conf
+      /etc/coredns/Corefile
+    State:          Running
+      Started:      Fri, 19 Jul 2024 14:19:49 +0800
+    Ready:          True
+    Restart Count:  0
+    Limits:
+      memory:  170Mi
+    Requests:
+      cpu:        100m
+      memory:     70Mi
+    Liveness:     http-get http://:8080/health delay=60s timeout=5s period=10s #success=1 #failure=5
+    Readiness:    http-get http://:8181/ready delay=0s timeout=1s period=10s #success=1 #failure=3
+    Environment:  <none>
+    Mounts:
+      /etc/coredns from config-volume (ro)
+      /var/run/secrets/kubernetes.io/serviceaccount from kube-api-access-7hw44 (ro)
+Conditions:
+  Type                        Status
+  PodReadyToStartContainers   True 
+  Initialized                 True 
+  Ready                       True 
+  ContainersReady             True 
+  PodScheduled                True 
+Volumes:
+  config-volume:
+    Type:      ConfigMap (a volume populated by a ConfigMap)
+    Name:      coredns
+    Optional:  false
+  kube-api-access-7hw44:
+    Type:                    Projected (a volume that contains injected data from multiple sources)
+    TokenExpirationSeconds:  3607
+    ConfigMapName:           kube-root-ca.crt
+    ConfigMapOptional:       <nil>
+    DownwardAPI:             true
+QoS Class:                   Burstable
+Node-Selectors:              kubernetes.io/os=linux
+Tolerations:                 CriticalAddonsOnly op=Exists
+                             node-role.kubernetes.io/control-plane:NoSchedule
+                             node.kubernetes.io/not-ready:NoExecute op=Exists for 300s
+                             node.kubernetes.io/unreachable:NoExecute op=Exists for 300s
+Events:
+  Type     Reason                  Age                    From               Message
+  ----     ------                  ----                   ----               -------
+  Normal   Scheduled               4m40s                  default-scheduler  Successfully assigned kube-system/coredns-7db6d8ff4d-bmdr9 to debian
+  Warning  FailedCreatePodSandBox  4m40s                  kubelet            Failed to create pod sandbox: rpc error: code = Unknown desc = failed to set up sandbox container "4f872603b6385b109c1095f4724c90028eb9a4b3d1f6e67afea8705bc56f9a2c" network for pod "coredns-7db6d8ff4d-bmdr9": networkPlugin cni failed to set up pod "coredns-7db6d8ff4d-bmdr9_kube-system" network: plugin type="calico" failed (add): error creating calico client: stat /etc/cni/net.d/calico-kubeconfig: no such file or directory
+  Warning  FailedCreatePodSandBox  4m39s                  kubelet            Failed to create pod sandbox: rpc error: code = Unknown desc = failed to set up sandbox container "e2ed4eb8c32565898966d9c17ae3dad11f2b52dfd22f5d559ba8cce1788aff56" network for pod "coredns-7db6d8ff4d-bmdr9": networkPlugin cni failed to set up pod "coredns-7db6d8ff4d-bmdr9_kube-system" network: plugin type="calico" failed (add): error creating calico client: stat /etc/cni/net.d/calico-kubeconfig: no such file or directory
+  Warning  FailedCreatePodSandBox  4m38s                  kubelet            Failed to create pod sandbox: rpc error: code = Unknown desc = failed to set up sandbox container "0fbfb4ab95741275c1f32b2572e4006e7f99baef2483401ca3285df03e7230e1" network for pod "coredns-7db6d8ff4d-bmdr9": networkPlugin cni failed to set up pod "coredns-7db6d8ff4d-bmdr9_kube-system" network: plugin type="calico" failed (add): cannot find a qualified ippool
+  Normal   SandboxChanged          4m37s (x3 over 4m39s)  kubelet            Pod sandbox changed, it will be killed and re-created.
+  Normal   Pulled                  4m36s                  kubelet            Container image "registry.k8s.io/coredns/coredns:v1.11.1" already present on machine
+  Normal   Created                 4m36s                  kubelet            Created container coredns
+  Normal   Started                 4m36s                  kubelet            Started container coredns
+  Warning  Unhealthy               4m35s                  kubelet            Readiness probe failed: HTTP probe failed with statuscode: 503
+
+
+Name:                 coredns-7db6d8ff4d-qjfh4
+Namespace:            kube-system
+Priority:             2000000000
+Priority Class Name:  system-cluster-critical
+Service Account:      coredns
+Node:                 debian/192.168.1.55
+Start Time:           Fri, 19 Jul 2024 14:19:45 +0800
+Labels:               k8s-app=kube-dns
+                      pod-template-hash=7db6d8ff4d
+Annotations:          cni.projectcalico.org/containerID: 7451543db761f303cad0ff376da9623e1474daff660dfd1a23281e750157b86a
+                      cni.projectcalico.org/podIP: 192.168.0.1/32
+                      cni.projectcalico.org/podIPs: 192.168.0.1/32
+Status:               Running
+IP:                   192.168.0.1
+IPs:
+  IP:           192.168.0.1
+Controlled By:  ReplicaSet/coredns-7db6d8ff4d
+Containers:
+  coredns:
+    Container ID:  docker://7b489aea60e1db266f9521f0cba1952da4102c8ae31bfb7c97c0be01905765ce
+    Image:         registry.k8s.io/coredns/coredns:v1.11.1
+    Image ID:      docker-pullable://registry.k8s.io/coredns/coredns@sha256:1eeb4c7316bacb1d4c8ead65571cd92dd21e27359f0d4917f1a5822a73b75db1
+    Ports:         53/UDP, 53/TCP, 9153/TCP
+    Host Ports:    0/UDP, 0/TCP, 0/TCP
+    Args:
+      -conf
+      /etc/coredns/Corefile
+    State:          Running
+      Started:      Fri, 19 Jul 2024 14:19:49 +0800
+    Ready:          True
+    Restart Count:  0
+    Limits:
+      memory:  170Mi
+    Requests:
+      cpu:        100m
+      memory:     70Mi
+    Liveness:     http-get http://:8080/health delay=60s timeout=5s period=10s #success=1 #failure=5
+    Readiness:    http-get http://:8181/ready delay=0s timeout=1s period=10s #success=1 #failure=3
+    Environment:  <none>
+    Mounts:
+      /etc/coredns from config-volume (ro)
+      /var/run/secrets/kubernetes.io/serviceaccount from kube-api-access-hw2b6 (ro)
+Conditions:
+  Type                        Status
+  PodReadyToStartContainers   True 
+  Initialized                 True 
+  Ready                       True 
+  ContainersReady             True 
+  PodScheduled                True 
+Volumes:
+  config-volume:
+    Type:      ConfigMap (a volume populated by a ConfigMap)
+    Name:      coredns
+    Optional:  false
+  kube-api-access-hw2b6:
+    Type:                    Projected (a volume that contains injected data from multiple sources)
+    TokenExpirationSeconds:  3607
+    ConfigMapName:           kube-root-ca.crt
+    ConfigMapOptional:       <nil>
+    DownwardAPI:             true
+QoS Class:                   Burstable
+Node-Selectors:              kubernetes.io/os=linux
+Tolerations:                 CriticalAddonsOnly op=Exists
+                             node-role.kubernetes.io/control-plane:NoSchedule
+                             node.kubernetes.io/not-ready:NoExecute op=Exists for 300s
+                             node.kubernetes.io/unreachable:NoExecute op=Exists for 300s
+Events:
+  Type     Reason                  Age                    From               Message
+  ----     ------                  ----                   ----               -------
+  Normal   Scheduled               4m40s                  default-scheduler  Successfully assigned kube-system/coredns-7db6d8ff4d-qjfh4 to debian
+  Warning  FailedCreatePodSandBox  4m40s                  kubelet            Failed to create pod sandbox: rpc error: code = Unknown desc = failed to set up sandbox container "9f8fa9c0671b4e124a77c869d954e5d83d6a466674e7ac4ec0aa2cf0b39d0025" network for pod "coredns-7db6d8ff4d-qjfh4": networkPlugin cni failed to set up pod "coredns-7db6d8ff4d-qjfh4_kube-system" network: plugin type="calico" failed (add): error creating calico client: stat /etc/cni/net.d/calico-kubeconfig: no such file or directory
+  Warning  FailedCreatePodSandBox  4m39s                  kubelet            Failed to create pod sandbox: rpc error: code = Unknown desc = failed to set up sandbox container "1ed487b14ca8ff4f19b1e68f43c92788490a5b90b64686ed2a6d20273694cd3f" network for pod "coredns-7db6d8ff4d-qjfh4": networkPlugin cni failed to set up pod "coredns-7db6d8ff4d-qjfh4_kube-system" network: plugin type="calico" failed (add): error creating calico client: stat /etc/cni/net.d/calico-kubeconfig: no such file or directory
+  Warning  FailedCreatePodSandBox  4m38s                  kubelet            Failed to create pod sandbox: rpc error: code = Unknown desc = failed to set up sandbox container "66e4754977a565283e0b8cb7db597c612777fc2173553a1315948135e5785530" network for pod "coredns-7db6d8ff4d-qjfh4": networkPlugin cni failed to set up pod "coredns-7db6d8ff4d-qjfh4_kube-system" network: plugin type="calico" failed (add): cannot find a qualified ippool
+  Normal   SandboxChanged          4m37s (x3 over 4m39s)  kubelet            Pod sandbox changed, it will be killed and re-created.
+  Normal   Pulled                  4m36s                  kubelet            Container image "registry.k8s.io/coredns/coredns:v1.11.1" already present on machine
+  Normal   Created                 4m36s                  kubelet            Created container coredns
+  Normal   Started                 4m36s                  kubelet            Started container coredns
+  Warning  Unhealthy               4m35s                  kubelet            Readiness probe failed: HTTP probe failed with statuscode: 503
+
+
+Name:                 etcd-debian
+Namespace:            kube-system
+Priority:             2000001000
+Priority Class Name:  system-node-critical
+Node:                 debian/192.168.1.55
+Start Time:           Fri, 19 Jul 2024 14:19:31 +0800
+Labels:               component=etcd
+                      tier=control-plane
+Annotations:          kubeadm.kubernetes.io/etcd.advertise-client-urls: https://192.168.1.55:2379
+                      kubernetes.io/config.hash: 7fdd899ec240c3b1773e3726c8443fa3
+                      kubernetes.io/config.mirror: 7fdd899ec240c3b1773e3726c8443fa3
+                      kubernetes.io/config.seen: 2024-07-19T14:19:31.116025691+08:00
+                      kubernetes.io/config.source: file
+Status:               Running
+SeccompProfile:       RuntimeDefault
+IP:                   192.168.1.55
+IPs:
+  IP:           192.168.1.55
+Controlled By:  Node/debian
+Containers:
+  etcd:
+    Container ID:  docker://f82a2abe50b798152974d3ae7622329c452f240579d72b32e00b6ef443e9fa88
+    Image:         registry.k8s.io/etcd:3.5.12-0
+    Image ID:      docker-pullable://registry.k8s.io/etcd@sha256:44a8e24dcbba3470ee1fee21d5e88d128c936e9b55d4bc51fbef8086f8ed123b
+    Port:          <none>
+    Host Port:     <none>
+    Command:
+      etcd
+      --advertise-client-urls=https://192.168.1.55:2379
+      --cert-file=/etc/kubernetes/pki/etcd/server.crt
+      --client-cert-auth=true
+      --data-dir=/var/lib/etcd
+      --experimental-initial-corrupt-check=true
+      --experimental-watch-progress-notify-interval=5s
+      --initial-advertise-peer-urls=https://192.168.1.55:2380
+      --initial-cluster=debian=https://192.168.1.55:2380
+      --key-file=/etc/kubernetes/pki/etcd/server.key
+      --listen-client-urls=https://127.0.0.1:2379,https://192.168.1.55:2379
+      --listen-metrics-urls=http://127.0.0.1:2381
+      --listen-peer-urls=https://192.168.1.55:2380
+      --name=debian
+      --peer-cert-file=/etc/kubernetes/pki/etcd/peer.crt
+      --peer-client-cert-auth=true
+      --peer-key-file=/etc/kubernetes/pki/etcd/peer.key
+      --peer-trusted-ca-file=/etc/kubernetes/pki/etcd/ca.crt
+      --snapshot-count=10000
+      --trusted-ca-file=/etc/kubernetes/pki/etcd/ca.crt
+    State:          Running
+      Started:      Fri, 19 Jul 2024 14:19:27 +0800
+    Ready:          True
+    Restart Count:  0
+    Requests:
+      cpu:        100m
+      memory:     100Mi
+    Liveness:     http-get http://127.0.0.1:2381/health%3Fexclude=NOSPACE&serializable=true delay=10s timeout=15s period=10s #success=1 #failure=8
+    Startup:      http-get http://127.0.0.1:2381/health%3Fserializable=false delay=10s timeout=15s period=10s #success=1 #failure=24
+    Environment:  <none>
+    Mounts:
+      /etc/kubernetes/pki/etcd from etcd-certs (rw)
+      /var/lib/etcd from etcd-data (rw)
+Conditions:
+  Type                        Status
+  PodReadyToStartContainers   True 
+  Initialized                 True 
+  Ready                       True 
+  ContainersReady             True 
+  PodScheduled                True 
+Volumes:
+  etcd-certs:
+    Type:          HostPath (bare host directory volume)
+    Path:          /etc/kubernetes/pki/etcd
+    HostPathType:  DirectoryOrCreate
+  etcd-data:
+    Type:          HostPath (bare host directory volume)
+    Path:          /var/lib/etcd
+    HostPathType:  DirectoryOrCreate
+QoS Class:         Burstable
+Node-Selectors:    <none>
+Tolerations:       :NoExecute op=Exists
+Events:
+  Type    Reason   Age    From     Message
+  ----    ------   ----   ----     -------
+  Normal  Pulled   4m58s  kubelet  Container image "registry.k8s.io/etcd:3.5.12-0" already present on machine
+  Normal  Created  4m58s  kubelet  Created container etcd
+  Normal  Started  4m58s  kubelet  Started container etcd
+
+
+Name:                 kube-apiserver-debian
+Namespace:            kube-system
+Priority:             2000001000
+Priority Class Name:  system-node-critical
+Node:                 debian/192.168.1.55
+Start Time:           Fri, 19 Jul 2024 14:19:31 +0800
+Labels:               component=kube-apiserver
+                      tier=control-plane
+Annotations:          kubeadm.kubernetes.io/kube-apiserver.advertise-address.endpoint: 192.168.1.55:6443
+                      kubernetes.io/config.hash: 0c6ee0de9287a2ec0150be75edc23cd3
+                      kubernetes.io/config.mirror: 0c6ee0de9287a2ec0150be75edc23cd3
+                      kubernetes.io/config.seen: 2024-07-19T14:19:31.116027912+08:00
+                      kubernetes.io/config.source: file
+Status:               Running
+SeccompProfile:       RuntimeDefault
+IP:                   192.168.1.55
+IPs:
+  IP:           192.168.1.55
+Controlled By:  Node/debian
+Containers:
+  kube-apiserver:
+    Container ID:  docker://5fb17077f0060174d01d58b9bed2006ca0f6e5197f60b9684f1097d56d66281e
+    Image:         registry.k8s.io/kube-apiserver:v1.30.0
+    Image ID:      docker-pullable://registry.k8s.io/kube-apiserver@sha256:6b8e197b2d39c321189a475ac755a77896e34b56729425590fbc99f3a96468a3
+    Port:          <none>
+    Host Port:     <none>
+    Command:
+      kube-apiserver
+      --advertise-address=192.168.1.55
+      --allow-privileged=true
+      --authorization-mode=Node,RBAC
+      --client-ca-file=/etc/kubernetes/pki/ca.crt
+      --enable-admission-plugins=NodeRestriction
+      --enable-bootstrap-token-auth=true
+      --etcd-cafile=/etc/kubernetes/pki/etcd/ca.crt
+      --etcd-certfile=/etc/kubernetes/pki/apiserver-etcd-client.crt
+      --etcd-keyfile=/etc/kubernetes/pki/apiserver-etcd-client.key
+      --etcd-servers=https://127.0.0.1:2379
+      --kubelet-client-certificate=/etc/kubernetes/pki/apiserver-kubelet-client.crt
+      --kubelet-client-key=/etc/kubernetes/pki/apiserver-kubelet-client.key
+      --kubelet-preferred-address-types=InternalIP,ExternalIP,Hostname
+      --proxy-client-cert-file=/etc/kubernetes/pki/front-proxy-client.crt
+      --proxy-client-key-file=/etc/kubernetes/pki/front-proxy-client.key
+      --requestheader-allowed-names=front-proxy-client
+      --requestheader-client-ca-file=/etc/kubernetes/pki/front-proxy-ca.crt
+      --requestheader-extra-headers-prefix=X-Remote-Extra-
+      --requestheader-group-headers=X-Remote-Group
+      --requestheader-username-headers=X-Remote-User
+      --secure-port=6443
+      --service-account-issuer=https://kubernetes.default.svc.cluster.local
+      --service-account-key-file=/etc/kubernetes/pki/sa.pub
+      --service-account-signing-key-file=/etc/kubernetes/pki/sa.key
+      --service-cluster-ip-range=10.96.0.0/12
+      --tls-cert-file=/etc/kubernetes/pki/apiserver.crt
+      --tls-private-key-file=/etc/kubernetes/pki/apiserver.key
+    State:          Running
+      Started:      Fri, 19 Jul 2024 14:19:27 +0800
+    Ready:          True
+    Restart Count:  0
+    Requests:
+      cpu:        250m
+    Liveness:     http-get https://192.168.1.55:6443/livez delay=10s timeout=15s period=10s #success=1 #failure=8
+    Readiness:    http-get https://192.168.1.55:6443/readyz delay=0s timeout=15s period=1s #success=1 #failure=3
+    Startup:      http-get https://192.168.1.55:6443/livez delay=10s timeout=15s period=10s #success=1 #failure=24
+    Environment:  <none>
+    Mounts:
+      /etc/ca-certificates from etc-ca-certificates (ro)
+      /etc/kubernetes/pki from k8s-certs (ro)
+      /etc/pki from etc-pki (ro)
+      /etc/ssl/certs from ca-certs (ro)
+      /usr/local/share/ca-certificates from usr-local-share-ca-certificates (ro)
+      /usr/share/ca-certificates from usr-share-ca-certificates (ro)
+Conditions:
+  Type                        Status
+  PodReadyToStartContainers   True 
+  Initialized                 True 
+  Ready                       True 
+  ContainersReady             True 
+  PodScheduled                True 
+Volumes:
+  ca-certs:
+    Type:          HostPath (bare host directory volume)
+    Path:          /etc/ssl/certs
+    HostPathType:  DirectoryOrCreate
+  etc-ca-certificates:
+    Type:          HostPath (bare host directory volume)
+    Path:          /etc/ca-certificates
+    HostPathType:  DirectoryOrCreate
+  etc-pki:
+    Type:          HostPath (bare host directory volume)
+    Path:          /etc/pki
+    HostPathType:  DirectoryOrCreate
+  k8s-certs:
+    Type:          HostPath (bare host directory volume)
+    Path:          /etc/kubernetes/pki
+    HostPathType:  DirectoryOrCreate
+  usr-local-share-ca-certificates:
+    Type:          HostPath (bare host directory volume)
+    Path:          /usr/local/share/ca-certificates
+    HostPathType:  DirectoryOrCreate
+  usr-share-ca-certificates:
+    Type:          HostPath (bare host directory volume)
+    Path:          /usr/share/ca-certificates
+    HostPathType:  DirectoryOrCreate
+QoS Class:         Burstable
+Node-Selectors:    <none>
+Tolerations:       :NoExecute op=Exists
+Events:
+  Type    Reason   Age    From     Message
+  ----    ------   ----   ----     -------
+  Normal  Pulled   4m58s  kubelet  Container image "registry.k8s.io/kube-apiserver:v1.30.0" already present on machine
+  Normal  Created  4m58s  kubelet  Created container kube-apiserver
+  Normal  Started  4m58s  kubelet  Started container kube-apiserver
+
+
+Name:                 kube-controller-manager-debian
+Namespace:            kube-system
+Priority:             2000001000
+Priority Class Name:  system-node-critical
+Node:                 debian/192.168.1.55
+Start Time:           Fri, 19 Jul 2024 14:19:31 +0800
+Labels:               component=kube-controller-manager
+                      tier=control-plane
+Annotations:          kubernetes.io/config.hash: 3a202fab5fe445919a3a994afc9837af
+                      kubernetes.io/config.mirror: 3a202fab5fe445919a3a994afc9837af
+                      kubernetes.io/config.seen: 2024-07-19T14:19:26.687420614+08:00
+                      kubernetes.io/config.source: file
+Status:               Running
+SeccompProfile:       RuntimeDefault
+IP:                   192.168.1.55
+IPs:
+  IP:           192.168.1.55
+Controlled By:  Node/debian
+Containers:
+  kube-controller-manager:
+    Container ID:  docker://477ad0e8a5586bceb2cf6941f364096929701daa5f50f570ca70f224fb95d8a0
+    Image:         registry.k8s.io/kube-controller-manager:v1.30.0
+    Image ID:      docker-pullable://registry.k8s.io/kube-controller-manager@sha256:5f52f00f17d5784b5ca004dffca59710fa1a9eec8d54cebdf9433a1d134150fe
+    Port:          <none>
+    Host Port:     <none>
+    Command:
+      kube-controller-manager
+      --allocate-node-cidrs=true
+      --authentication-kubeconfig=/etc/kubernetes/controller-manager.conf
+      --authorization-kubeconfig=/etc/kubernetes/controller-manager.conf
+      --bind-address=127.0.0.1
+      --client-ca-file=/etc/kubernetes/pki/ca.crt
+      --cluster-cidr=192.168.0.0/24
+      --cluster-name=kubernetes
+      --cluster-signing-cert-file=/etc/kubernetes/pki/ca.crt
+      --cluster-signing-key-file=/etc/kubernetes/pki/ca.key
+      --controllers=*,bootstrapsigner,tokencleaner
+      --kubeconfig=/etc/kubernetes/controller-manager.conf
+      --leader-elect=true
+      --requestheader-client-ca-file=/etc/kubernetes/pki/front-proxy-ca.crt
+      --root-ca-file=/etc/kubernetes/pki/ca.crt
+      --service-account-private-key-file=/etc/kubernetes/pki/sa.key
+      --service-cluster-ip-range=10.96.0.0/12
+      --use-service-account-credentials=true
+    State:          Running
+      Started:      Fri, 19 Jul 2024 14:19:27 +0800
+    Ready:          True
+    Restart Count:  0
+    Requests:
+      cpu:        200m
+    Liveness:     http-get https://127.0.0.1:10257/healthz delay=10s timeout=15s period=10s #success=1 #failure=8
+    Startup:      http-get https://127.0.0.1:10257/healthz delay=10s timeout=15s period=10s #success=1 #failure=24
+    Environment:  <none>
+    Mounts:
+      /etc/ca-certificates from etc-ca-certificates (ro)
+      /etc/kubernetes/controller-manager.conf from kubeconfig (ro)
+      /etc/kubernetes/pki from k8s-certs (ro)
+      /etc/pki from etc-pki (ro)
+      /etc/ssl/certs from ca-certs (ro)
+      /usr/libexec/kubernetes/kubelet-plugins/volume/exec from flexvolume-dir (rw)
+      /usr/local/share/ca-certificates from usr-local-share-ca-certificates (ro)
+      /usr/share/ca-certificates from usr-share-ca-certificates (ro)
+Conditions:
+  Type                        Status
+  PodReadyToStartContainers   True 
+  Initialized                 True 
+  Ready                       True 
+  ContainersReady             True 
+  PodScheduled                True 
+Volumes:
+  ca-certs:
+    Type:          HostPath (bare host directory volume)
+    Path:          /etc/ssl/certs
+    HostPathType:  DirectoryOrCreate
+  etc-ca-certificates:
+    Type:          HostPath (bare host directory volume)
+    Path:          /etc/ca-certificates
+    HostPathType:  DirectoryOrCreate
+  etc-pki:
+    Type:          HostPath (bare host directory volume)
+    Path:          /etc/pki
+    HostPathType:  DirectoryOrCreate
+  flexvolume-dir:
+    Type:          HostPath (bare host directory volume)
+    Path:          /usr/libexec/kubernetes/kubelet-plugins/volume/exec
+    HostPathType:  DirectoryOrCreate
+  k8s-certs:
+    Type:          HostPath (bare host directory volume)
+    Path:          /etc/kubernetes/pki
+    HostPathType:  DirectoryOrCreate
+  kubeconfig:
+    Type:          HostPath (bare host directory volume)
+    Path:          /etc/kubernetes/controller-manager.conf
+    HostPathType:  FileOrCreate
+  usr-local-share-ca-certificates:
+    Type:          HostPath (bare host directory volume)
+    Path:          /usr/local/share/ca-certificates
+    HostPathType:  DirectoryOrCreate
+  usr-share-ca-certificates:
+    Type:          HostPath (bare host directory volume)
+    Path:          /usr/share/ca-certificates
+    HostPathType:  DirectoryOrCreate
+QoS Class:         Burstable
+Node-Selectors:    <none>
+Tolerations:       :NoExecute op=Exists
+Events:
+  Type    Reason   Age    From     Message
+  ----    ------   ----   ----     -------
+  Normal  Pulled   4m58s  kubelet  Container image "registry.k8s.io/kube-controller-manager:v1.30.0" already present on machine
+  Normal  Created  4m58s  kubelet  Created container kube-controller-manager
+  Normal  Started  4m58s  kubelet  Started container kube-controller-manager
+
+
+Name:                 kube-proxy-7grh8
+Namespace:            kube-system
+Priority:             2000001000
+Priority Class Name:  system-node-critical
+Service Account:      kube-proxy
+Node:                 pi5/192.168.1.11
+Start Time:           Fri, 19 Jul 2024 14:21:27 +0800
+Labels:               controller-revision-hash=79cf874c65
+                      k8s-app=kube-proxy
+                      pod-template-generation=1
+Annotations:          <none>
+Status:               Running
+IP:                   192.168.1.11
+IPs:
+  IP:           192.168.1.11
+Controlled By:  DaemonSet/kube-proxy
+Containers:
+  kube-proxy:
+    Container ID:  docker://79530c65e076efc243a5fb7854e0f6ed81c912fa5fe3932d332678aca4ce0e31
+    Image:         registry.k8s.io/kube-proxy:v1.30.0
+    Image ID:      docker-pullable://registry.k8s.io/kube-proxy@sha256:ec532ff47eaf39822387e51ec73f1f2502eb74658c6303319db88d2c380d0210
+    Port:          <none>
+    Host Port:     <none>
+    Command:
+      /usr/local/bin/kube-proxy
+      --config=/var/lib/kube-proxy/config.conf
+      --hostname-override=$(NODE_NAME)
+    State:          Running
+      Started:      Fri, 19 Jul 2024 14:21:29 +0800
+    Ready:          True
+    Restart Count:  0
+    Environment:
+      NODE_NAME:   (v1:spec.nodeName)
+    Mounts:
+      /lib/modules from lib-modules (ro)
+      /run/xtables.lock from xtables-lock (rw)
+      /var/lib/kube-proxy from kube-proxy (rw)
+      /var/run/secrets/kubernetes.io/serviceaccount from kube-api-access-8hsvl (ro)
+Conditions:
+  Type                        Status
+  PodReadyToStartContainers   True 
+  Initialized                 True 
+  Ready                       True 
+  ContainersReady             True 
+  PodScheduled                True 
+Volumes:
+  kube-proxy:
+    Type:      ConfigMap (a volume populated by a ConfigMap)
+    Name:      kube-proxy
+    Optional:  false
+  xtables-lock:
+    Type:          HostPath (bare host directory volume)
+    Path:          /run/xtables.lock
+    HostPathType:  FileOrCreate
+  lib-modules:
+    Type:          HostPath (bare host directory volume)
+    Path:          /lib/modules
+    HostPathType:  
+  kube-api-access-8hsvl:
+    Type:                    Projected (a volume that contains injected data from multiple sources)
+    TokenExpirationSeconds:  3607
+    ConfigMapName:           kube-root-ca.crt
+    ConfigMapOptional:       <nil>
+    DownwardAPI:             true
+QoS Class:                   BestEffort
+Node-Selectors:              kubernetes.io/os=linux
+Tolerations:                 op=Exists
+                             node.kubernetes.io/disk-pressure:NoSchedule op=Exists
+                             node.kubernetes.io/memory-pressure:NoSchedule op=Exists
+                             node.kubernetes.io/network-unavailable:NoSchedule op=Exists
+                             node.kubernetes.io/not-ready:NoExecute op=Exists
+                             node.kubernetes.io/pid-pressure:NoSchedule op=Exists
+                             node.kubernetes.io/unreachable:NoExecute op=Exists
+                             node.kubernetes.io/unschedulable:NoSchedule op=Exists
+Events:
+  Type    Reason     Age    From               Message
+  ----    ------     ----   ----               -------
+  Normal  Scheduled  3m     default-scheduler  Successfully assigned kube-system/kube-proxy-7grh8 to pi5
+  Normal  Pulled     2m57s  kubelet            Container image "registry.k8s.io/kube-proxy:v1.30.0" already present on machine
+  Normal  Created    2m56s  kubelet            Created container kube-proxy
+  Normal  Started    2m56s  kubelet            Started container kube-proxy
+
+
+Name:                 kube-proxy-cjpnb
+Namespace:            kube-system
+Priority:             2000001000
+Priority Class Name:  system-node-critical
+Service Account:      kube-proxy
+Node:                 debian/192.168.1.55
+Start Time:           Fri, 19 Jul 2024 14:19:44 +0800
+Labels:               controller-revision-hash=79cf874c65
+                      k8s-app=kube-proxy
+                      pod-template-generation=1
+Annotations:          <none>
+Status:               Running
+IP:                   192.168.1.55
+IPs:
+  IP:           192.168.1.55
+Controlled By:  DaemonSet/kube-proxy
+Containers:
+  kube-proxy:
+    Container ID:  docker://fdb16bbba246385dafd176ede362e9fc854dd498422c0bda4d777ca06ce6d28e
+    Image:         registry.k8s.io/kube-proxy:v1.30.0
+    Image ID:      docker-pullable://registry.k8s.io/kube-proxy@sha256:ec532ff47eaf39822387e51ec73f1f2502eb74658c6303319db88d2c380d0210
+    Port:          <none>
+    Host Port:     <none>
+    Command:
+      /usr/local/bin/kube-proxy
+      --config=/var/lib/kube-proxy/config.conf
+      --hostname-override=$(NODE_NAME)
+    State:          Running
+      Started:      Fri, 19 Jul 2024 14:19:45 +0800
+    Ready:          True
+    Restart Count:  0
+    Environment:
+      NODE_NAME:   (v1:spec.nodeName)
+    Mounts:
+      /lib/modules from lib-modules (ro)
+      /run/xtables.lock from xtables-lock (rw)
+      /var/lib/kube-proxy from kube-proxy (rw)
+      /var/run/secrets/kubernetes.io/serviceaccount from kube-api-access-t49mc (ro)
+Conditions:
+  Type                        Status
+  PodReadyToStartContainers   True 
+  Initialized                 True 
+  Ready                       True 
+  ContainersReady             True 
+  PodScheduled                True 
+Volumes:
+  kube-proxy:
+    Type:      ConfigMap (a volume populated by a ConfigMap)
+    Name:      kube-proxy
+    Optional:  false
+  xtables-lock:
+    Type:          HostPath (bare host directory volume)
+    Path:          /run/xtables.lock
+    HostPathType:  FileOrCreate
+  lib-modules:
+    Type:          HostPath (bare host directory volume)
+    Path:          /lib/modules
+    HostPathType:  
+  kube-api-access-t49mc:
+    Type:                    Projected (a volume that contains injected data from multiple sources)
+    TokenExpirationSeconds:  3607
+    ConfigMapName:           kube-root-ca.crt
+    ConfigMapOptional:       <nil>
+    DownwardAPI:             true
+QoS Class:                   BestEffort
+Node-Selectors:              kubernetes.io/os=linux
+Tolerations:                 op=Exists
+                             node.kubernetes.io/disk-pressure:NoSchedule op=Exists
+                             node.kubernetes.io/memory-pressure:NoSchedule op=Exists
+                             node.kubernetes.io/network-unavailable:NoSchedule op=Exists
+                             node.kubernetes.io/not-ready:NoExecute op=Exists
+                             node.kubernetes.io/pid-pressure:NoSchedule op=Exists
+                             node.kubernetes.io/unreachable:NoExecute op=Exists
+                             node.kubernetes.io/unschedulable:NoSchedule op=Exists
+Events:
+  Type    Reason     Age    From               Message
+  ----    ------     ----   ----               -------
+  Normal  Scheduled  4m41s  default-scheduler  Successfully assigned kube-system/kube-proxy-cjpnb to debian
+  Normal  Pulled     4m40s  kubelet            Container image "registry.k8s.io/kube-proxy:v1.30.0" already present on machine
+  Normal  Created    4m40s  kubelet            Created container kube-proxy
+  Normal  Started    4m40s  kubelet            Started container kube-proxy
+
+
+Name:                 kube-scheduler-debian
+Namespace:            kube-system
+Priority:             2000001000
+Priority Class Name:  system-node-critical
+Node:                 debian/192.168.1.55
+Start Time:           Fri, 19 Jul 2024 14:19:31 +0800
+Labels:               component=kube-scheduler
+                      tier=control-plane
+Annotations:          kubernetes.io/config.hash: eb79814a05ba44e7f49abe461ba3be2d
+                      kubernetes.io/config.mirror: eb79814a05ba44e7f49abe461ba3be2d
+                      kubernetes.io/config.seen: 2024-07-19T14:19:31.116020265+08:00
+                      kubernetes.io/config.source: file
+Status:               Running
+SeccompProfile:       RuntimeDefault
+IP:                   192.168.1.55
+IPs:
+  IP:           192.168.1.55
+Controlled By:  Node/debian
+Containers:
+  kube-scheduler:
+    Container ID:  docker://94a4545b7d599c0c2ac69a63cb4f7ca6ac85560f5bad784387fa274cd61c2542
+    Image:         registry.k8s.io/kube-scheduler:v1.30.0
+    Image ID:      docker-pullable://registry.k8s.io/kube-scheduler@sha256:2353c3a1803229970fcb571cffc9b2f120372350e01c7381b4b650c4a02b9d67
+    Port:          <none>
+    Host Port:     <none>
+    Command:
+      kube-scheduler
+      --authentication-kubeconfig=/etc/kubernetes/scheduler.conf
+      --authorization-kubeconfig=/etc/kubernetes/scheduler.conf
+      --bind-address=127.0.0.1
+      --kubeconfig=/etc/kubernetes/scheduler.conf
+      --leader-elect=true
+    State:          Running
+      Started:      Fri, 19 Jul 2024 14:19:27 +0800
+    Ready:          True
+    Restart Count:  0
+    Requests:
+      cpu:        100m
+    Liveness:     http-get https://127.0.0.1:10259/healthz delay=10s timeout=15s period=10s #success=1 #failure=8
+    Startup:      http-get https://127.0.0.1:10259/healthz delay=10s timeout=15s period=10s #success=1 #failure=24
+    Environment:  <none>
+    Mounts:
+      /etc/kubernetes/scheduler.conf from kubeconfig (ro)
+Conditions:
+  Type                        Status
+  PodReadyToStartContainers   True 
+  Initialized                 True 
+  Ready                       True 
+  ContainersReady             True 
+  PodScheduled                True 
+Volumes:
+  kubeconfig:
+    Type:          HostPath (bare host directory volume)
+    Path:          /etc/kubernetes/scheduler.conf
+    HostPathType:  FileOrCreate
+QoS Class:         Burstable
+Node-Selectors:    <none>
+Tolerations:       :NoExecute op=Exists
+Events:
+  Type    Reason   Age    From     Message
+  ----    ------   ----   ----     -------
+  Normal  Pulled   4m58s  kubelet  Container image "registry.k8s.io/kube-scheduler:v1.30.0" already present on machine
+  Normal  Created  4m58s  kubelet  Created container kube-scheduler
+  Normal  Started  4m58s  kubelet  Started container kube-scheduler

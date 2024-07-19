@@ -1,0 +1,174 @@
+Name:               debian
+Roles:              control-plane
+Labels:             beta.kubernetes.io/arch=amd64
+                    beta.kubernetes.io/os=linux
+                    kubernetes.io/arch=amd64
+                    kubernetes.io/hostname=debian
+                    kubernetes.io/os=linux
+                    node-role.kubernetes.io/control-plane=
+                    node.kubernetes.io/exclude-from-external-load-balancers=
+Annotations:        kubeadm.alpha.kubernetes.io/cri-socket: unix:///var/run/cri-dockerd.sock
+                    node.alpha.kubernetes.io/ttl: 0
+                    projectcalico.org/IPv4Address: 192.168.1.67/24
+                    projectcalico.org/IPv4IPIPTunnelAddr: 192.168.0.0
+                    volumes.kubernetes.io/controller-managed-attach-detach: true
+CreationTimestamp:  Fri, 19 Jul 2024 14:19:28 +0800
+Taints:             node-role.kubernetes.io/control-plane:NoSchedule
+Unschedulable:      false
+Lease:
+  HolderIdentity:  debian
+  AcquireTime:     <unset>
+  RenewTime:       Fri, 19 Jul 2024 14:24:06 +0800
+Conditions:
+  Type                 Status  LastHeartbeatTime                 LastTransitionTime                Reason                       Message
+  ----                 ------  -----------------                 ------------------                ------                       -------
+  NetworkUnavailable   False   Fri, 19 Jul 2024 14:19:48 +0800   Fri, 19 Jul 2024 14:19:48 +0800   CalicoIsUp                   Calico is running on this node
+  MemoryPressure       False   Fri, 19 Jul 2024 14:19:51 +0800   Fri, 19 Jul 2024 14:19:27 +0800   KubeletHasSufficientMemory   kubelet has sufficient memory available
+  DiskPressure         False   Fri, 19 Jul 2024 14:19:51 +0800   Fri, 19 Jul 2024 14:19:27 +0800   KubeletHasNoDiskPressure     kubelet has no disk pressure
+  PIDPressure          False   Fri, 19 Jul 2024 14:19:51 +0800   Fri, 19 Jul 2024 14:19:27 +0800   KubeletHasSufficientPID      kubelet has sufficient PID available
+  Ready                True    Fri, 19 Jul 2024 14:19:51 +0800   Fri, 19 Jul 2024 14:19:29 +0800   KubeletReady                 kubelet is posting ready status
+Addresses:
+  InternalIP:  192.168.1.55
+  Hostname:    debian
+Capacity:
+  cpu:                24
+  ephemeral-storage:  959122528Ki
+  hugepages-1Gi:      0
+  hugepages-2Mi:      0
+  memory:             65579724Ki
+  pods:               110
+Allocatable:
+  cpu:                24
+  ephemeral-storage:  883927320342
+  hugepages-1Gi:      0
+  hugepages-2Mi:      0
+  memory:             65477324Ki
+  pods:               110
+System Info:
+  Machine ID:                 3857bd079c34415db3e26e4c65f58a75
+  System UUID:                f0e02ad0-9413-73b3-5c2f-c87f54ae4d79
+  Boot ID:                    46c82576-fda7-411f-960d-325ac43b94e5
+  Kernel Version:             6.1.0-22-amd64
+  OS Image:                   Debian GNU/Linux 12 (bookworm)
+  Operating System:           linux
+  Architecture:               amd64
+  Container Runtime Version:  docker://27.0.3
+  Kubelet Version:            v1.30.2
+  Kube-Proxy Version:         v1.30.2
+PodCIDR:                      192.168.0.0/24
+PodCIDRs:                     192.168.0.0/24
+Non-terminated Pods:          (10 in total)
+  Namespace                   Name                                        CPU Requests  CPU Limits  Memory Requests  Memory Limits  Age
+  ---------                   ----                                        ------------  ----------  ---------------  -------------  ---
+  kube-system                 calico-kube-controllers-564985c589-jp78t    0 (0%)        0 (0%)      0 (0%)           0 (0%)         4m31s
+  kube-system                 calico-node-tgrgr                           250m (1%)     0 (0%)      0 (0%)           0 (0%)         4m32s
+  kube-system                 calico-typha-cd69879f5-pjqql                0 (0%)        0 (0%)      0 (0%)           0 (0%)         4m31s
+  kube-system                 coredns-7db6d8ff4d-bmdr9                    100m (0%)     0 (0%)      70Mi (0%)        170Mi (0%)     4m31s
+  kube-system                 coredns-7db6d8ff4d-qjfh4                    100m (0%)     0 (0%)      70Mi (0%)        170Mi (0%)     4m31s
+  kube-system                 etcd-debian                                 100m (0%)     0 (0%)      100Mi (0%)       0 (0%)         4m45s
+  kube-system                 kube-apiserver-debian                       250m (1%)     0 (0%)      0 (0%)           0 (0%)         4m45s
+  kube-system                 kube-controller-manager-debian              200m (0%)     0 (0%)      0 (0%)           0 (0%)         4m46s
+  kube-system                 kube-proxy-cjpnb                            0 (0%)        0 (0%)      0 (0%)           0 (0%)         4m32s
+  kube-system                 kube-scheduler-debian                       100m (0%)     0 (0%)      0 (0%)           0 (0%)         4m45s
+Allocated resources:
+  (Total limits may be over 100 percent, i.e., overcommitted.)
+  Resource           Requests    Limits
+  --------           --------    ------
+  cpu                1100m (4%)  0 (0%)
+  memory             240Mi (0%)  340Mi (0%)
+  ephemeral-storage  0 (0%)      0 (0%)
+  hugepages-1Gi      0 (0%)      0 (0%)
+  hugepages-2Mi      0 (0%)      0 (0%)
+Events:
+  Type     Reason                   Age                    From             Message
+  ----     ------                   ----                   ----             -------
+  Normal   Starting                 4m31s                  kube-proxy       
+  Normal   NodeAllocatableEnforced  4m50s                  kubelet          Updated Node Allocatable limit across pods
+  Warning  InvalidDiskCapacity      4m50s                  kubelet          invalid capacity 0 on image filesystem
+  Normal   NodeHasSufficientMemory  4m50s (x8 over 4m50s)  kubelet          Node debian status is now: NodeHasSufficientMemory
+  Normal   NodeHasNoDiskPressure    4m50s (x7 over 4m50s)  kubelet          Node debian status is now: NodeHasNoDiskPressure
+  Normal   NodeHasSufficientPID     4m50s (x7 over 4m50s)  kubelet          Node debian status is now: NodeHasSufficientPID
+  Normal   Starting                 4m50s                  kubelet          Starting kubelet.
+  Normal   Starting                 4m45s                  kubelet          Starting kubelet.
+  Warning  InvalidDiskCapacity      4m45s                  kubelet          invalid capacity 0 on image filesystem
+  Normal   NodeAllocatableEnforced  4m45s                  kubelet          Updated Node Allocatable limit across pods
+  Normal   NodeHasSufficientMemory  4m45s                  kubelet          Node debian status is now: NodeHasSufficientMemory
+  Normal   NodeHasNoDiskPressure    4m45s                  kubelet          Node debian status is now: NodeHasNoDiskPressure
+  Normal   NodeHasSufficientPID     4m45s                  kubelet          Node debian status is now: NodeHasSufficientPID
+  Normal   RegisteredNode           4m32s                  node-controller  Node debian event: Registered Node debian in Controller
+
+
+Name:               pi5
+Roles:              <none>
+Labels:             beta.kubernetes.io/arch=arm64
+                    beta.kubernetes.io/os=linux
+                    kubernetes.io/arch=arm64
+                    kubernetes.io/hostname=pi5
+                    kubernetes.io/os=linux
+Annotations:        kubeadm.alpha.kubernetes.io/cri-socket: unix:///var/run/cri-dockerd.sock
+                    node.alpha.kubernetes.io/ttl: 0
+                    projectcalico.org/IPv4Address: 192.168.1.11/24
+                    projectcalico.org/IPv4IPIPTunnelAddr: 192.168.0.128
+                    volumes.kubernetes.io/controller-managed-attach-detach: true
+CreationTimestamp:  Fri, 19 Jul 2024 14:21:25 +0800
+Taints:             <none>
+Unschedulable:      false
+Lease:
+  HolderIdentity:  pi5
+  AcquireTime:     <unset>
+  RenewTime:       Fri, 19 Jul 2024 14:24:09 +0800
+Conditions:
+  Type                 Status  LastHeartbeatTime                 LastTransitionTime                Reason                       Message
+  ----                 ------  -----------------                 ------------------                ------                       -------
+  NetworkUnavailable   False   Fri, 19 Jul 2024 14:21:32 +0800   Fri, 19 Jul 2024 14:21:32 +0800   CalicoIsUp                   Calico is running on this node
+  MemoryPressure       False   Fri, 19 Jul 2024 14:21:27 +0800   Fri, 19 Jul 2024 14:21:25 +0800   KubeletHasSufficientMemory   kubelet has sufficient memory available
+  DiskPressure         False   Fri, 19 Jul 2024 14:21:27 +0800   Fri, 19 Jul 2024 14:21:25 +0800   KubeletHasNoDiskPressure     kubelet has no disk pressure
+  PIDPressure          False   Fri, 19 Jul 2024 14:21:27 +0800   Fri, 19 Jul 2024 14:21:25 +0800   KubeletHasSufficientPID      kubelet has sufficient PID available
+  Ready                True    Fri, 19 Jul 2024 14:21:27 +0800   Fri, 19 Jul 2024 14:21:27 +0800   KubeletReady                 kubelet is posting ready status
+Addresses:
+  InternalIP:  192.168.1.11
+  Hostname:    pi5
+Capacity:
+  cpu:                4
+  ephemeral-storage:  29790736Ki
+  memory:             8245648Ki
+  pods:               110
+Allocatable:
+  cpu:                4
+  ephemeral-storage:  27455142253
+  memory:             8143248Ki
+  pods:               110
+System Info:
+  Machine ID:                 07540c90c824435299911e0ecc2532c5
+  System UUID:                07540c90c824435299911e0ecc2532c5
+  Boot ID:                    2f2a4a41-735d-4513-97db-c0bf01ef9183
+  Kernel Version:             6.6.31+rpt-rpi-2712
+  OS Image:                   Debian GNU/Linux 12 (bookworm)
+  Operating System:           linux
+  Architecture:               arm64
+  Container Runtime Version:  docker://27.0.3
+  Kubelet Version:            v1.30.2
+  Kube-Proxy Version:         v1.30.2
+Non-terminated Pods:          (2 in total)
+  Namespace                   Name                 CPU Requests  CPU Limits  Memory Requests  Memory Limits  Age
+  ---------                   ----                 ------------  ----------  ---------------  -------------  ---
+  kube-system                 calico-node-lzngl    250m (6%)     0 (0%)      0 (0%)           0 (0%)         2m51s
+  kube-system                 kube-proxy-7grh8     0 (0%)        0 (0%)      0 (0%)           0 (0%)         2m51s
+Allocated resources:
+  (Total limits may be over 100 percent, i.e., overcommitted.)
+  Resource           Requests   Limits
+  --------           --------   ------
+  cpu                250m (6%)  0 (0%)
+  memory             0 (0%)     0 (0%)
+  ephemeral-storage  0 (0%)     0 (0%)
+Events:
+  Type    Reason                   Age                    From             Message
+  ----    ------                   ----                   ----             -------
+  Normal  Starting                 2m47s                  kube-proxy       
+  Normal  NodeHasSufficientMemory  2m51s (x2 over 2m51s)  kubelet          Node pi5 status is now: NodeHasSufficientMemory
+  Normal  NodeHasNoDiskPressure    2m51s (x2 over 2m51s)  kubelet          Node pi5 status is now: NodeHasNoDiskPressure
+  Normal  NodeHasSufficientPID     2m51s (x2 over 2m51s)  kubelet          Node pi5 status is now: NodeHasSufficientPID
+  Normal  NodeAllocatableEnforced  2m51s                  kubelet          Updated Node Allocatable limit across pods
+  Normal  NodeReady                2m49s                  kubelet          Node pi5 status is now: NodeReady
+  Normal  RegisteredNode           2m47s                  node-controller  Node pi5 event: Registered Node pi5 in Controller
+  Normal  CIDRNotAvailable         2m44s (x9 over 2m51s)  cidrAllocator    Node pi5 status is now: CIDRNotAvailable

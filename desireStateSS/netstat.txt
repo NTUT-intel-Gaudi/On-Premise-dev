@@ -1,0 +1,29 @@
+Active Internet connections (only servers)
+Proto Recv-Q Send-Q Local Address           Foreign Address         State       PID/Program name    
+tcp        0      0 192.168.1.55:2380       0.0.0.0:*               LISTEN      736014/etcd         
+tcp        0      0 192.168.1.55:2379       0.0.0.0:*               LISTEN      736014/etcd         
+tcp        0      0 0.0.0.0:22              0.0.0.0:*               LISTEN      981/sshd: /usr/sbin 
+tcp        0      0 0.0.0.0:179             0.0.0.0:*               LISTEN      739838/bird         
+tcp        0      0 127.0.0.1:10259         0.0.0.0:*               LISTEN      735996/kube-schedul 
+tcp        0      0 127.0.0.1:10257         0.0.0.0:*               LISTEN      736012/kube-control 
+tcp        0      0 127.0.0.1:10248         0.0.0.0:*               LISTEN      736211/kubelet      
+tcp        0      0 127.0.0.1:10249         0.0.0.0:*               LISTEN      736693/kube-proxy   
+tcp        0      0 127.0.0.1:9098          0.0.0.0:*               LISTEN      737231/calico-typha 
+tcp        0      0 127.0.0.1:9099          0.0.0.0:*               LISTEN      739285/calico-node  
+tcp        0      0 127.0.0.1:6463          0.0.0.0:*               LISTEN      513185/app.asar --n 
+tcp        0      0 127.0.0.1:2379          0.0.0.0:*               LISTEN      736014/etcd         
+tcp        0      0 127.0.0.1:2381          0.0.0.0:*               LISTEN      736014/etcd         
+tcp6       0      0 :::10256                :::*                    LISTEN      736693/kube-proxy   
+tcp6       0      0 :::10250                :::*                    LISTEN      736211/kubelet      
+tcp6       0      0 :::22                   :::*                    LISTEN      981/sshd: /usr/sbin 
+tcp6       0      0 :::80                   :::*                    LISTEN      989/apache2         
+tcp6       0      0 :::36709                :::*                    LISTEN      1925/cri-dockerd    
+tcp6       0      0 :::5473                 :::*                    LISTEN      737231/calico-typha 
+tcp6       0      0 :::6443                 :::*                    LISTEN      735980/kube-apiserv 
+udp        0      0 0.0.0.0:54286           0.0.0.0:*                           854/avahi-daemon: r 
+udp        0      0 224.0.0.251:5353        0.0.0.0:*                           13143/chrome        
+udp        0      0 224.0.0.251:5353        0.0.0.0:*                           13143/chrome        
+udp        0      0 224.0.0.251:5353        0.0.0.0:*                           13143/chrome        
+udp        0      0 0.0.0.0:5353            0.0.0.0:*                           854/avahi-daemon: r 
+udp6       0      0 :::36870                :::*                                854/avahi-daemon: r 
+udp6       0      0 :::5353                 :::*                                854/avahi-daemon: r 
