@@ -29,7 +29,7 @@ nodeRegistration:
       value: "someValue"
       effect: "NoSchedule"
   kubeletExtraArgs:
-    v: 4
+    v: "4"
   ignorePreflightErrors:
     - IsPrivilegedUser
   imagePullPolicy: "IfNotPresent"
