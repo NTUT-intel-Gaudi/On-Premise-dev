@@ -66,7 +66,7 @@ networking:
   serviceSubnet: "10.96.0.0/16"
   podSubnet: "10.244.0.0/24"
   dnsDomain: "cluster.local"
-controlPlaneEndpoint: "10.100.0.1:6443"
+controlPlaneEndpoint: "192.168.1.55:6443"
 apiServer:
   extraArgs:
     authorization-mode: "Node,RBAC"
@@ -104,6 +104,7 @@ clusterName: "example-cluster"
 ---
 apiVersion: kubelet.config.k8s.io/v1beta1
 kind: KubeletConfiguration
+cgroupDriver: systemd
 # kubelet specific options here
 ---
 apiVersion: kubeproxy.config.k8s.io/v1alpha1
