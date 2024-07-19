@@ -22,7 +22,7 @@ bootstrapTokens:
     groups:
       - system:bootstrappers:kubeadm:default-node-token
 nodeRegistration:
-  name: "ec2-10-100-0-1"
+  name: "debian"
   criSocket: "unix:///var/run/cri-dockerd.sock"
   taints:
     - key: "kubeadmNode"
@@ -34,7 +34,7 @@ nodeRegistration:
     - IsPrivilegedUser
   imagePullPolicy: "IfNotPresent"
 localAPIEndpoint:
-  advertiseAddress: "10.100.0.1"
+  advertiseAddress: "192.168.1.55"
   bindPort: 6443
 certificateKey: "e6a2eb8581237ab72a4f494f30285ec12a9694d750b9785706a83bfcbbbd2204"
 skipPhases:
