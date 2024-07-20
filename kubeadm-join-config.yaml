@@ -1,0 +1,21 @@
+apiVersion: kubeadm.k8s.io/v1beta3
+kind: JoinConfiguration
+nodeRegistration:
+  name: worker-node-1
+  taints:
+    # - key: "key1"
+    #   value: "value1"
+    #   effect: "NoSchedule"
+  kubeletExtraArgs:
+    node-labels: "role=worker"
+caCertPath: /etc/kubernetes/pki/ca.crt
+tlsBootstrapToken: abcdef.0123456789abcdef
+discovery:
+  bootstrapToken:
+    token: abcdef.0123456789abcdef
+    apiServerEndpoint: "api-server:6443"
+    caCertHashes:
+      - "sha256:somehashvalue"
+    unsafeSkipCAVerification: false
+  file:
+    kubeConfigPath: /etc/kubernetes/kubelet.conf
