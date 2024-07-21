@@ -24,7 +24,9 @@ sudo chown $(id -u):$(id -g) $HOME/.kube/config
 
 # apply network add on
 kubectl apply -f calico.yaml
-kubectl get pods -A --watch
+
+# apply storage class
+kubectl apply -f local-path-storage.yaml
 
 # apply 
 # kubectl create namespace argocd
