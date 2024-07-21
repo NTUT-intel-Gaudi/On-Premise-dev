@@ -15,6 +15,7 @@ sudo rm -rf /etc/cni/net.d
 sudo rm -rf /var/lib/cni/
 sudo rm $HOME/.kube/config
 
+cd ../config
 sudo kubeadm init --config=kubeadm-config.yaml
 
 sudo mkdir $HOME/.kube/
@@ -26,5 +27,5 @@ kubectl apply -f calico.yaml
 kubectl get pods -A --watch
 
 # apply 
-kubectl create namespace argocd
-kubectl apply -n argocd -f https://raw.githubusercontent.com/argoproj/argo-cd/stable/manifests/install.yaml
+# kubectl create namespace argocd
+# kubectl apply -n argocd -f https://raw.githubusercontent.com/argoproj/argo-cd/stable/manifests/install.yaml
