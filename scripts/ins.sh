@@ -48,3 +48,9 @@ systemctl enable cri-docker.service
 systemctl enable --now cri-docker.socket
 
 # for arm64 device: https://alexsniffin.medium.com/a-guide-to-building-a-kubernetes-cluster-with-raspberry-pis-23fa4938d420
+
+
+# install kustomize
+
+curl -s "https://raw.githubusercontent.com/kubernetes-sigs/kustomize/master/hack/install_kustomize.sh" | bash
+sudo mv kustomize /usr/local/bin/
