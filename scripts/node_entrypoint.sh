@@ -14,13 +14,15 @@ EOF
 sudo sysctl --system
 
 sudo kubeadm reset --cri-socket=unix:///var/run/cri-dockerd.sock
-# kubectl join [create] --cri-socket=unix:///var/run/cri-dockerd.sock
 
 #[ERROR FileAvailable--etc-kubernetes-kubelet.conf]: /etc/kubernetes/kubelet.conf already exists
 #[ERROR FileAvailable--etc-kubernetes-pki-ca.crt]: /etc/kubernetes/pki/ca.crt already exists
 sudo rm /etc/kubernetes/kubelet.conf
 sudo rm /etc/kubernetes/pki/ca.crt
 sudo rm /etc/kubernetes/bootstrap-kubelet.conf
+
+read -p "Enter the join command: " join_command
+$join_command --cri-socket=unix:///var/run/cri-dockerd.sock
 
 # kubectl apply -f calico.yaml
 # kubectl get pods -A --watch
