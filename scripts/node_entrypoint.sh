@@ -12,7 +12,7 @@ EOF
 
 sudo sysctl --system
 
-sudo kubeadm reset --cri-socket=unix:///var/run/cri-dockerd.sock
+sudo kubeadm reset --cri-socket=unix:///var/run/cri-dockerd.sock --force
 
 #[ERROR FileAvailable--etc-kubernetes-kubelet.conf]: /etc/kubernetes/kubelet.conf already exists
 #[ERROR FileAvailable--etc-kubernetes-pki-ca.crt]: /etc/kubernetes/pki/ca.crt already exists
