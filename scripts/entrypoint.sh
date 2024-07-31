@@ -11,9 +11,19 @@ EOF
 sudo sysctl --system
 
 sudo kubeadm reset --cri-socket=unix:///var/run/cri-dockerd.sock --force
-sudo rm -rf /etc/cni/net.d
+sudo rm -rf /etc/cni/
 sudo rm -rf /var/lib/cni/
+# sudo rm -rf /var/lib/kubelet/*
+# sudo rm -rf /run/flannel
 sudo rm $HOME/.kube/config
+
+# sudo systemctl stop kubelet
+# sudo systemctl stop docker
+
+# sudo ifconfig cni0 down
+# sudo brctl delbr cni0
+# sudo ifconfig flannel.1 down
+# sudo systemctl start docker
 
 cd ../config
 sudo kubeadm init --config=kubeadm-config.yaml
