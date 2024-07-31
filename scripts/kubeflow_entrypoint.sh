@@ -17,7 +17,8 @@ kustomize build common/istio-1-22/istio-namespace/base | kubectl apply -f -
 kustomize build common/istio-1-22/istio-install/overlays/oauth2-proxy | kubectl apply -f -
 
 echo "Waiting for all Istio Pods to become ready..."
-kubectl wait --for=condition=Ready pods --all -n istio-system --timeout 300s
+kubectl wait --for=condition=Ready pods --all -n istio-system --timeout=300s || \
+kubectl wait --for=condition=Complete pods --all -n istio-system --timeout=300s
 
 # install Oauth2-proxy
 echo "Installing oauth2-proxy..."
