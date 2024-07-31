@@ -38,52 +38,67 @@ kustomize build common/oidc-client/oauth2-proxy/overlays/m2m-self-signed/ | kube
 kubectl wait --for=condition=ready pod -l 'app.kubernetes.io/name=oauth2-proxy' --timeout=180s -n oauth2-proxy
 
 # install dex
+echo "Installing dex..."
 kustomize build common/dex/overlays/oauth2-proxy | kubectl apply -f -
 
 # install Knative
+echo "Installing Knative Serving..."
 kustomize build common/knative/knative-serving/overlays/gateways | kubectl apply -f -
 kustomize build common/istio-1-22/cluster-local-gateway/base | kubectl apply -f -
 
 # install Kubeflow Namespace
+echo "Installing Kubeflow Namespace..."
 kustomize build common/kubeflow-namespace/base | kubectl apply -f -
 
 # install Kubeflow Roles
+echo "Installing Kubeflow Roles..."
 kustomize build common/kubeflow-roles/base | kubectl apply -f -
 
 # kubeflow application
 
 # install KServe
+echo "Installing KServe..."
 kustomize build contrib/kserve/kserve | kubectl apply -f -
 kustomize build contrib/kserve/models-web-app/overlays/kubeflow | kubectl apply -f -
 
 # install Katib
+echo "Installing Katib..."
 kustomize build apps/katib/upstream/installs/katib-with-kubeflow | kubectl apply -f -
 
 # install Central Dashboard
+echo "Installing Central Dashboard..."
 kustomize build apps/centraldashboard/upstream/overlays/kserve | kubectl apply -f -
 
 # install Admission Webhook
+echo "Installing Admission Webhook..."
 kustomize build apps/admission-webhook/upstream/overlays/cert-manager | kubectl apply -f -
 
 # install Notebook 1.0
+echo "Installing Notebook 1.0..."
 kustomize build apps/jupyter/notebook-controller/upstream/overlays/kubeflow | kubectl apply -f -
 kustomize build apps/jupyter/jupyter-web-app/upstream/overlays/istio | kubectl apply -f -
 
 # install PVC Viewer Controller
+echo "Installing PVC Viewer Controller..."
 kustomize build apps/pvcviewer-controller/upstream/default | kubectl apply -f -
 
 # install Profiles + KFAM
+echo "Installing Profiles + KFAM..."
 kustomize build apps/profiles/upstream/overlays/kubeflow | kubectl apply -f -
 
 # install Volumes Web Application
+echo "Installing Volumes Web Application..."
 kustomize build apps/volumes-web-app/upstream/overlays/istio | kubectl apply -f -
 
 # install TensorBoard
+echo "Installing TensorBoard..."
 kustomize build apps/tensorboard/tensorboards-web-app/upstream/overlays/istio | kubectl apply -f -
 kustomize build apps/tensorboard/tensorboard-controller/upstream/overlays/kubeflow | kubectl apply -f -
 
 # install Training Operator
+echo "Installing Training Operator..."
 kustomize build apps/training-operator/upstream/overlays/kubeflow | kubectl apply -f -
 
 # install Namespaces
+echo "Installing Namespaces..."
 kustomize build common/user-namespace/base | kubectl apply -f -
