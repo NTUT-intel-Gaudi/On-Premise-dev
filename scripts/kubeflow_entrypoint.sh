@@ -2,6 +2,18 @@
 
 cd /home/james/tools/manifests
 
+# kubernetes dependencies
+
+# apply network add on
+# kubectl apply -f calico.yaml
+
+# apply storage class
+# kubectl apply -f local-path-storage.yaml
+
+# apply 
+# kubectl create namespace argocd
+# kubectl apply -n argocd -f https://raw.githubusercontent.com/argoproj/argo-cd/stable/manifests/install.yaml
+
 # kubeflow dependencies
 
 # install cert manager
@@ -18,7 +30,7 @@ kustomize build common/istio-1-22/istio-install/overlays/oauth2-proxy | kubectl 
 
 echo "Waiting for all Istio Pods to become ready..."
 kubectl wait --for=condition=Ready pods --all -n istio-system --timeout=300s || \
-kubectl wait --for=condition=Completed pods --all -n istio-system --timeout=300s
+kubectl wait --for=status=Completed pods --all -n istio-system --timeout=300s
 
 # install Oauth2-proxy
 echo "Installing oauth2-proxy..."

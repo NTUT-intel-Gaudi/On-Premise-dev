@@ -31,13 +31,3 @@ sudo kubeadm init --config=kubeadm-config.yaml
 sudo mkdir $HOME/.kube/
 sudo cp -i /etc/kubernetes/admin.conf $HOME/.kube/config
 sudo chown $(id -u):$(id -g) $HOME/.kube/config
-
-# apply network add on
-kubectl apply -f calico.yaml
-
-# apply storage class
-kubectl apply -f local-path-storage.yaml
-
-# apply 
-# kubectl create namespace argocd
-# kubectl apply -n argocd -f https://raw.githubusercontent.com/argoproj/argo-cd/stable/manifests/install.yaml
