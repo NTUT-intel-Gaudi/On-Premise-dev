@@ -10,7 +10,10 @@ cd ../config
 kubectl apply -f calico.yaml
 
 # apply storage class
-# kubectl apply -f local-path-storage.yaml
+kubectl apply -f sc-config.yaml
+kubectl apply -f pv-volume01.yaml
+kubectl apply -f pv-volume02.yaml
+kubectl apply -f pv-volume03.yaml
 
 # apply 
 # kubectl create namespace argocd
