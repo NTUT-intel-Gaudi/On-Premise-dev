@@ -1,7 +1,8 @@
 apiVersion: kubeadm.k8s.io/v1beta3
 kind: JoinConfiguration
 nodeRegistration:
-  name: worker-node-1
+  name: node01
+  criSocket: "unix:///var/run/cri-dockerd.sock"
   taints:
     # - key: "key1"
     #   value: "value1"
@@ -9,13 +10,11 @@ nodeRegistration:
   kubeletExtraArgs:
     node-labels: "role=worker"
 caCertPath: /etc/kubernetes/pki/ca.crt
-tlsBootstrapToken: abcdef.0123456789abcdef
 discovery:
   bootstrapToken:
-    token: abcdef.0123456789abcdef
-    apiServerEndpoint: "api-server:6443"
+    token: l3e4of.552nq4h693lwzm67
+    apiServerEndpoint: "192.168.1.11:6443"
     caCertHashes:
-      - "sha256:somehashvalue"
+      - "sha256:1538aefaa799d2ca016cd5b26dcdb66417bb959ee71c019686835c7d445690e2"
     unsafeSkipCAVerification: false
-  file:
-    kubeConfigPath: /etc/kubernetes/kubelet.conf
+  tlsBootstrapToken: l3e4of.552nq4h693lwzm67

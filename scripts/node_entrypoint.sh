@@ -20,8 +20,5 @@ sudo rm /etc/kubernetes/kubelet.conf
 sudo rm /etc/kubernetes/pki/ca.crt
 sudo rm /etc/kubernetes/bootstrap-kubelet.conf
 
-read -p "Enter the join command: " join_command
-sudo $join_command --cri-socket=unix:///var/run/cri-dockerd.sock
-
-# kubectl apply -f calico.yaml
-# kubectl get pods -A --watch
+cd ../config
+sudo kubeadm join --config kubeadm-normal-node-config.yaml
