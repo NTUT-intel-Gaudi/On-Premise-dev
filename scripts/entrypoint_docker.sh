@@ -10,7 +10,7 @@ EOF
 
 sudo sysctl --system
 
-sudo kubeadm reset --cri-socket=unix:///var/run/cri-dockerd.sock --force
+sudo kubeadm reset --cri-socket=unix:///var/run/containerd/containerd.sock --force
 sudo rm -rf /etc/cni/
 sudo rm -rf /var/lib/cni/
 # sudo rm -rf /var/lib/kubelet/*
@@ -26,7 +26,7 @@ sudo rm $HOME/.kube/config
 # sudo systemctl start docker
 
 cd ../config
-sudo kubeadm init --config=kubeadm-config.yaml
+sudo kubeadm init --config=kubeadm-config_docker.yaml
 
 sudo mkdir $HOME/.kube/
 sudo cp -i /etc/kubernetes/admin.conf $HOME/.kube/config
