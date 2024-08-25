@@ -44,7 +44,7 @@ if [ "$cri" = "containerd" ]; then
   sudo sed -i 's/SystemdCgroup = false/SystemdCgroup = true/g' /etc/containerd/config.toml
   sudo systemctl restart containerd
   sudo systemctl enable containerd
-else if [ "$cri" = "docker" ]; then
+elif [ "$cri" = "docker" ]; then
   sudo apt-get install -y docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin
   sudo systemctl enable --now docker
 
@@ -57,7 +57,7 @@ else if [ "$cri" = "docker" ]; then
     systemctl daemon-reload
     systemctl enable cri-docker.service
     systemctl enable --now cri-docker.socket
-  else if [ "arch" = "arm64" ]; then
+  elif [ "arch" = "arm64" ]; then
     # install cri-dockerd
     # https://alexsniffin.medium.com/a-guide-to-building-a-kubernetes-cluster-with-raspberry-pis-23fa4938d420
   fi
