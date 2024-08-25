@@ -23,7 +23,7 @@ bootstrapTokens:
       - system:bootstrappers:kubeadm:default-node-token
 nodeRegistration:
   name: "debian"
-  criSocket: "unix:///var/run/cri-dockerd.sock"
+  criSocket: "unix:///var/run/containerd/containerd.sock"
   taints:
     # - key: "kubeadmNode"
     #   value: "someValue"
@@ -42,7 +42,7 @@ skipPhases:
 ---
 apiVersion: kubeadm.k8s.io/v1beta3
 kind: ClusterConfiguration
-kubernetesVersion: v1.30.0
+kubernetesVersion: v1.30.3
 # etcd:
   # one of local or external
   # local:
