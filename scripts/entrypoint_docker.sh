@@ -26,7 +26,7 @@ sudo rm $HOME/.kube/config
 # sudo systemctl start docker
 
 cd ../config
-sudo kubeadm init --config=kubeadm-config_docker.yaml
+sudo kubeadm init --config=kubeadm-config_docker.yaml --v=5
 
 sudo mkdir $HOME/.kube/
 sudo cp -i /etc/kubernetes/admin.conf $HOME/.kube/config
