@@ -1,5 +1,7 @@
 #!bin/sh
 
+cri=containerd
+
 THIS_SCRIPT_PATH=$(cd "$(dirname "$0")" && pwd)
 cd "$THIS_SCRIPT_PATH"
 
@@ -21,6 +23,7 @@ EOF
 sudo sysctl --system
 
 sudo kubeadm reset --cri-socket=unix:///var/run/containerd/containerd.sock --force
+sudo kubeadm reset --cri-socket=unix:///var/run/cri-dockerd.sock --force
 sudo rm -rf /etc/cni/
 sudo rm -rf /var/lib/cni/
 # sudo rm -rf /var/lib/kubelet/*
@@ -36,7 +39,12 @@ sudo rm $HOME/.kube/config
 # sudo systemctl start docker
 
 cd ../config
-sudo kubeadm init --config=kubeadm-config_containerd.yaml --v=5
+
+if [ "$cri" = "containerd" ]; then
+    sudo kubeadm init --config=kubeadm-config_docker.yaml --v=5
+else if [ "$cri" = "docker" ]; then
+    sudo kubeadm init --config=kubeadm-config_containerd.yaml --v=5
+fi
 
 sudo mkdir $HOME/.kube/
 sudo cp -i /etc/kubernetes/admin.conf $HOME/.kube/config
