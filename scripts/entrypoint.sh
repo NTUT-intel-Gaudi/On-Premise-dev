@@ -1,5 +1,6 @@
 #!bin/sh
 
+autoInit=false
 cri=containerd
 
 THIS_SCRIPT_PATH=$(cd "$(dirname "$0")" && pwd)
@@ -39,11 +40,12 @@ sudo rm $HOME/.kube/config
 # sudo systemctl start docker
 
 cd ../config
-
-if [ "$cri" = "containerd" ]; then
-    sudo kubeadm init --config=kubeadm-config_docker.yaml --v=5
-else if [ "$cri" = "docker" ]; then
-    sudo kubeadm init --config=kubeadm-config_containerd.yaml --v=5
+if [ "$autoInit" = "true" ]; then
+    if [ "$cri" = "containerd" ]; then
+        sudo kubeadm init --config=kubeadm-config_docker.yaml --v=5
+    elif [ "$cri" = "docker" ]; then
+        sudo kubeadm init --config=kubeadm-config_containerd.yaml --v=5
+    fi
 fi
 
 sudo mkdir $HOME/.kube/
