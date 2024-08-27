@@ -50,6 +50,28 @@ if [ "$cri" = "containerd" ]; then
     sudo tar Cxzvf /opt/cni/bin cni-plugins-linux-amd64-v1.5.1.tgz
     # install kubeadm images for containerd
     sudo kubeadm config images pull --cri-socket=/run/containerd/containerd.sock --kubernetes-version=v1.31.0
+  elif [ "$arch" = "arm64" ]; then
+    # install containerd from the official binaries
+    wget https://github.com/containerd/containerd/releases/download/v1.7.21/containerd-1.7.21-linux-arm64.tar.gz
+    sudo tar Cxzvf /usr/local containerd-1.7.21-linux-arm64.tar.gz
+    sudo mkdir -p /usr/local/lib/systemd/system
+    sudo wget -O /usr/local/lib/systemd/system/containerd.service https://raw.githubusercontent.com/containerd/containerd/main/containerd.service
+    sudo systemctl daemon-reload
+    sudo systemctl enable --now containerd
+    sudo mkdir -p /etc/containerd
+    containerd config default | sudo tee /etc/containerd/config.toml
+    # set SystemdCgroup to true for runc
+    sudo sed -i 's/SystemdCgroup = false/SystemdCgroup = true/g' /etc/containerd/config.toml
+    sudo systemctl restart containerd
+    # install runc
+    wget https://github.com/opencontainers/runc/releases/download/v1.1.13/runc.arm64
+    sudo install -m 755 runc.arm64 /usr/local/sbin/runc
+    # install cni plugin
+    wget https://github.com/containernetworking/plugins/releases/download/v1.5.1/cni-plugins-linux-arm64-v1.5.1.tgz
+    sudo mkdir -p /opt/cni/bin
+    sudo tar Cxzvf /opt/cni/bin cni-plugins-linux-arm64-v1.5.1.tgz
+    # install kubeadm images for containerd
+    sudo kubeadm config images pull --cri-socket=/run/containerd/containerd.sock --kubernetes-version=v1.31.0
   fi
 
 elif [ "$cri" = "docker" ]; then
