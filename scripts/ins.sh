@@ -44,7 +44,7 @@ if [ "$cri" = "containerd" ]; then
     mkdir -p /opt/cni/bin
     sudo tar Cxzvf /opt/cni/bin cni-plugins-linux-amd64-v1.5.1.tgz
   fi
-  
+
 elif [ "$cri" = "docker" ]; then
   sudo apt-get update
   sudo curl -fsSL "https://download.docker.com/linux/$os/gpg" -o /etc/apt/keyrings/docker.asc
@@ -69,7 +69,7 @@ elif [ "$cri" = "docker" ]; then
     systemctl enable cri-docker.service
     systemctl enable --now cri-docker.socket
   elif [ "arch" = "arm64" ]; then
-    # install cri-dockerd
+    echo "Not supported"
     # https://alexsniffin.medium.com/a-guide-to-building-a-kubernetes-cluster-with-raspberry-pis-23fa4938d420
   fi
 fi
