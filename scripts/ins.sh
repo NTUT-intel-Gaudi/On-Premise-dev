@@ -31,7 +31,7 @@ if [ "$cri" = "containerd" ]; then
   if [ "$arch" = "amd64" ]; then
     # install containerd from the official binaries
     wget https://github.com/containerd/containerd/releases/download/v1.7.21/containerd-1.7.21-linux-amd64.tar.gz
-    tar Cxzvf /usr/local containerd-1.7.21-linux-amd64.tar.gz
+    sudo tar Cxzvf /usr/local containerd-1.7.21-linux-amd64.tar.gz
     sudo mkdir -p /usr/local/lib/systemd/system
     sudo wget -O /usr/local/lib/systemd/system/containerd.service https://raw.githubusercontent.com/containerd/containerd/main/containerd.service
     sudo systemctl daemon-reload
@@ -41,7 +41,7 @@ if [ "$cri" = "containerd" ]; then
     sudo install -m 755 runc.arm64 /usr/local/sbin/runc
     #install cni plugin
     wget https://github.com/containernetworking/plugins/releases/download/v1.5.1/cni-plugins-linux-amd64-v1.5.1.tgz
-    mkdir -p /opt/cni/bin
+    sudo mkdir -p /opt/cni/bin
     sudo tar Cxzvf /opt/cni/bin cni-plugins-linux-amd64-v1.5.1.tgz
   fi
 
