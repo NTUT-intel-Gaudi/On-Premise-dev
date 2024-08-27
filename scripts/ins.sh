@@ -38,7 +38,7 @@ if [ "$cri" = "containerd" ]; then
     sudo systemctl enable --now containerd
     # install runc
     wget https://github.com/opencontainers/runc/releases/download/v1.1.13/runc.amd64
-    sudo install -m 755 runc.arm64 /usr/local/sbin/runc
+    sudo install -m 755 runc.amd64 /usr/local/sbin/runc
     #install cni plugin
     wget https://github.com/containernetworking/plugins/releases/download/v1.5.1/cni-plugins-linux-amd64-v1.5.1.tgz
     sudo mkdir -p /opt/cni/bin
