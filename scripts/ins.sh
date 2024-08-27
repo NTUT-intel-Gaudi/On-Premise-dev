@@ -41,7 +41,6 @@ if [ "$cri" = "containerd" ]; then
     # set SystemdCgroup to true for runc
     sudo sed -i 's/SystemdCgroup = false/SystemdCgroup = true/g' /etc/containerd/config.toml
     sudo systemctl restart containerd
-    sudo systemctl enable containerd
     # install runc
     wget https://github.com/opencontainers/runc/releases/download/v1.1.13/runc.amd64
     sudo install -m 755 runc.amd64 /usr/local/sbin/runc
