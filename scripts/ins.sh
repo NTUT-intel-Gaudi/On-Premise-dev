@@ -98,8 +98,19 @@ elif [ "$cri" = "docker" ]; then
     systemctl enable cri-docker.service
     systemctl enable --now cri-docker.socket
   elif [ "$arch" = "arm64" ]; then
-    echo "Not supported"
     # https://alexsniffin.medium.com/a-guide-to-building-a-kubernetes-cluster-with-raspberry-pis-23fa4938d420
+    wget https://github.com/Mirantis/cri-dockerd/releases/download/v0.3.4/cri-dockerd-0.3.4.arm64.tgz
+    tar -xvzf cri-dockerd-0.3.4.arm64.tgz
+    sudo mv cri-dockerd/cri-dockerd /usr/bin/cri-dockerd
+    sudo chmod +x /usr/bin/cri-dockerd
+    wget https://raw.githubusercontent.com/Mirantis/cri-dockerd/master/packaging/systemd/cri-docker.service
+    wget https://raw.githubusercontent.com/Mirantis/cri-dockerd/master/packaging/systemd/cri-docker.socket
+    sudo mv cri-docker.service /etc/systemd/system/
+    sudo mv cri-docker.socket /etc/systemd/system/
+    sudo systemctl enable cri-docker.service
+    sudo systemctl enable cri-docker.socket
+    sudo systemctl start cri-docker.service
+    sudo systemctl start cri-docker.socket
   fi
 fi
 
