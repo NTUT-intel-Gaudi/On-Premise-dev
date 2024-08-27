@@ -36,13 +36,21 @@ if [ "$cri" = "containerd" ]; then
     sudo wget -O /usr/local/lib/systemd/system/containerd.service https://raw.githubusercontent.com/containerd/containerd/main/containerd.service
     sudo systemctl daemon-reload
     sudo systemctl enable --now containerd
+    sudo mkdir -p /etc/containerd
+    containerd config default | sudo tee /etc/containerd/config.toml
+    # set SystemdCgroup to true for runc
+    sudo sed -i 's/SystemdCgroup = false/SystemdCgroup = true/g' /etc/containerd/config.toml
+    sudo systemctl restart containerd
+    sudo systemctl enable containerd
     # install runc
     wget https://github.com/opencontainers/runc/releases/download/v1.1.13/runc.amd64
     sudo install -m 755 runc.amd64 /usr/local/sbin/runc
-    #install cni plugin
+    # install cni plugin
     wget https://github.com/containernetworking/plugins/releases/download/v1.5.1/cni-plugins-linux-amd64-v1.5.1.tgz
     sudo mkdir -p /opt/cni/bin
     sudo tar Cxzvf /opt/cni/bin cni-plugins-linux-amd64-v1.5.1.tgz
+    # install kubeadm images for containerd
+    sudo kubeadm config images pull --cri-socket=/run/containerd/containerd.sock --kubernetes-version=v1.31.0
   fi
 
 elif [ "$cri" = "docker" ]; then
