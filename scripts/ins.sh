@@ -28,7 +28,7 @@ sudo systemctl enable --now kubelet
 # install container interface
 
 if [ "$cri" = "containerd" ]; then
-  if [ "arch" = "amd64" ]; then
+  if [ "$arch" = "amd64" ]; then
     # install containerd from the official binaries
     wget https://github.com/containerd/containerd/releases/download/v1.7.21/containerd-1.7.21-linux-amd64.tar.gz
     tar Cxzvf /usr/local containerd-1.7.21-linux-amd64.tar.gz
@@ -59,7 +59,7 @@ elif [ "$cri" = "docker" ]; then
   sudo apt-get install -y docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin
   sudo systemctl enable --now docker
 
-  if [ "arch" = "amd64" ]; then
+  if [ "$arch" = "amd64" ]; then
     # install cri-dockerd
     wget https://github.com/Mirantis/cri-dockerd/releases/download/v0.3.15/cri-dockerd_0.3.15.3-0.debian-bookworm_amd64.deb
     sudo dpkg -i cri-dockerd_0.3.15.3-0.debian-bookworm_amd64.deb
@@ -68,7 +68,7 @@ elif [ "$cri" = "docker" ]; then
     systemctl daemon-reload
     systemctl enable cri-docker.service
     systemctl enable --now cri-docker.socket
-  elif [ "arch" = "arm64" ]; then
+  elif [ "$arch" = "arm64" ]; then
     echo "Not supported"
     # https://alexsniffin.medium.com/a-guide-to-building-a-kubernetes-cluster-with-raspberry-pis-23fa4938d420
   fi
