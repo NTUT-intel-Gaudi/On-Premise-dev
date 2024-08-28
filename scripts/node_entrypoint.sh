@@ -33,6 +33,9 @@ sudo rm /etc/kubernetes/bootstrap-kubelet.conf
 
 sudo rm -rf /etc/cni/net.d
 
+sudo systemctl restart containerd
+sudo systemctl restart kubelet
+
 cd ../config
 
 if [ "$autoJoin" = "true" ]; then
