@@ -45,8 +45,8 @@ if [ "$autoInit" = "true" ]; then
     elif [ "$cri" = "docker" ]; then
         sudo kubeadm init --config=kubeadm-config_containerd.yaml --v=5
     fi
+    sudo mkdir $HOME/.kube/
+    sudo cp -i /etc/kubernetes/admin.conf $HOME/.kube/config
+    sudo chown $(id -u):$(id -g) $HOME/.kube/config
 fi
 
-sudo mkdir $HOME/.kube/
-sudo cp -i /etc/kubernetes/admin.conf $HOME/.kube/config
-sudo chown $(id -u):$(id -g) $HOME/.kube/config
