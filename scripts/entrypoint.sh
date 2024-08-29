@@ -27,16 +27,16 @@ sudo kubeadm reset --cri-socket=unix:///var/run/containerd/containerd.sock --for
 sudo kubeadm reset --cri-socket=unix:///var/run/cri-dockerd.sock --force
 sudo rm -rf /etc/cni/
 sudo rm -rf /var/lib/cni/
+sudo rm -rf /var/lib/kubelet/*
+sudo rm $HOME/.kube/config
+
+sudo ifconfig cni0 down
+sudo ifconfig flannel.1 down
+sudo ip link delete cni0
+sudo ip link delete flannel.1
 
 sudo systemctl restart containerd
 sudo systemctl restart kubelet
-# sudo rm -rf /var/lib/kubelet/*
-# sudo rm -rf /run/flannel
-sudo rm $HOME/.kube/config
-
-# sudo ifconfig cni0 down
-# sudo brctl delbr cni0
-# sudo ifconfig flannel.1 down
 
 cd ../config
 if [ "$autoInit" = "true" ]; then

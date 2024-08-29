@@ -11,6 +11,12 @@ cd "$THIS_SCRIPT_PATH"
 sudo apt update
 sudo apt upgrade
 sudo install -m 0755 -d /etc/apt/keyrings
+sudo apt install net-tools
+
+# install systemd-resolved
+sudo apt install systemd-resolved
+sudo systemctl restart systemd-resolved
+sudo systemctl enable systemd-resolved
 
 # install kubelet kubeadm kubectl
 # apt-transport-https may be a dummy package; if so, you can skip that package

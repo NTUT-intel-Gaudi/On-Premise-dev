@@ -31,7 +31,15 @@ sudo rm /etc/kubernetes/kubelet.conf
 sudo rm /etc/kubernetes/pki/ca.crt
 sudo rm /etc/kubernetes/bootstrap-kubelet.conf
 
-sudo rm -rf /etc/cni/net.d
+sudo rm -rf /etc/cni/
+sudo rm -rf /var/lib/cni/
+sudo rm -rf /var/lib/kubelet/*
+sudo rm $HOME/.kube/config
+
+sudo ifconfig cni0 down
+sudo ifconfig flannel.1 down
+sudo ip link delete cni0
+sudo ip link delete flannel.1
 
 sudo systemctl restart containerd
 sudo systemctl restart kubelet
