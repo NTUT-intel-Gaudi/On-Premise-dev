@@ -11,7 +11,7 @@ spec:
   persistentVolumeReclaimPolicy: Retain
   storageClassName: default-local-storage
   local:
-    path: /home/james/temp/t0
+    path: /home/james/workspace/temp/t0
   nodeAffinity:
     required:
       nodeSelectorTerms:
