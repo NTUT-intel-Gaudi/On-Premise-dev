@@ -1,21 +1,56 @@
 #!bin/sh
-set -euo pipefail
+
+autoInit=false
+cri=containerd
 
 THIS_SCRIPT_PATH=$(cd "$(dirname "$0")" && pwd)
 cd "$THIS_SCRIPT_PATH"
 
-swapoff -a
-cat <<EOF | tee /etc/sysctl.d/k8s.conf
+sudo swapoff -a
+sudo modprobe br_netfilter
+sudo modprobe overlay
+
+cat <<EOF | sudo tee /etc/modules-load.d/containerd.conf
+overlay
+br_netfilter
+EOF
+
+sudo cat <<EOF | sudo tee /etc/sysctl.d/k8s.conf
+net.bridge.bridge-nf-call-iptables  = 1
+net.bridge.bridge-nf-call-ip6tables = 1
 net.ipv4.ip_forward = 1
 EOF
 
-sysctl --system
-kubeadm reset
-rm $HOME/.kube/config
-kubeadm init --pod-network-cidr=192.168.0.0/24 --cri-socket=unix:///var/run/cri-dockerd.sock
+sudo sysctl --system
 
-mkdir $HOME/.kube
-cp -i /etc/kubernetes/admin.conf $HOME/.kube/config
-chown $(id -u):$(id -g) $HOME/.kube/config
+sudo kubeadm reset --cri-socket=unix:///var/run/containerd/containerd.sock --force
+sudo kubeadm reset --cri-socket=unix:///var/run/cri-dockerd.sock --force
+sudo rm -rf /etc/cni/
+sudo rm -rf /var/lib/cni/
+sudo rm -rf /var/lib/kubelet/*
+sudo rm $HOME/.kube/config
 
-# journalctl -u kubelet -f
+sudo ifconfig cni0 down
+sudo ifconfig flannel.1 down
+sudo ip link delete cni0
+sudo ip link delete flannel.1
+
+sudo systemctl restart containerd
+sudo systemctl restart kubelet
+
+sudo sysctl fs.inotify.max_user_instances=2280
+sudo sysctl fs.inotify.max_user_watches=1255360
+
+cd ../config
+if [ "$autoInit" = "true" ]; then
+    if [ "$cri" = "containerd" ]; then
+        sudo kubeadm init --config=kubeadm-config_docker.yaml --v=5
+    elif [ "$cri" = "docker" ]; then
+        sudo kubeadm init --config=kubeadm-config_containerd.yaml --v=5
+    fi
+    sudo mkdir -p $HOME/.kube/
+    sudo cp -i /etc/kubernetes/admin.conf $HOME/.kube/config
+    sudo chown $(id -u):$(id -g) $HOME/.kube/config
+    export KUBECONFIG=~/.kube/config
+fi
+
