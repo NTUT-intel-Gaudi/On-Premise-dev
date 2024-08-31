@@ -11,7 +11,7 @@ spec:
   
   source:
     repoURL: https://github.com/kubeflow/manifests
-    targetRevision: master
+    targetRevision: v1.9-branch
     path: example
   
   syncPolicy:
