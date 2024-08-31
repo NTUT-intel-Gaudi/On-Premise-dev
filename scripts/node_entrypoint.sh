@@ -11,6 +11,9 @@ sudo swapoff -a
 sudo modprobe br_netfilter
 sudo modprobe overlay
 
+sudo sysctl fs.inotify.max_user_instances=2280
+sudo sysctl fs.inotify.max_user_watches=1255360
+
 cat <<EOF | sudo tee /etc/modules-load.d/containerd.conf
 overlay
 br_netfilter

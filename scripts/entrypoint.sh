@@ -10,6 +10,9 @@ sudo swapoff -a
 sudo modprobe br_netfilter
 sudo modprobe overlay
 
+sudo sysctl fs.inotify.max_user_instances=2280
+sudo sysctl fs.inotify.max_user_watches=1255360
+
 cat <<EOF | sudo tee /etc/modules-load.d/containerd.conf
 overlay
 br_netfilter
@@ -45,8 +48,9 @@ if [ "$autoInit" = "true" ]; then
     elif [ "$cri" = "docker" ]; then
         sudo kubeadm init --config=kubeadm-config_containerd.yaml --v=5
     fi
-    sudo mkdir $HOME/.kube/
+    sudo mkdir -p $HOME/.kube/
     sudo cp -i /etc/kubernetes/admin.conf $HOME/.kube/config
     sudo chown $(id -u):$(id -g) $HOME/.kube/config
+    export KUBECONFIG=~/.kube/config
 fi
 
