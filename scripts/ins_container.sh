@@ -31,12 +31,6 @@ if [ "$cri" = "containerd" ]; then
     wget https://github.com/containernetworking/plugins/releases/download/v1.5.1/cni-plugins-linux-amd64-v1.5.1.tgz
     sudo mkdir -p /opt/cni/bin
     sudo tar Cxzvf /opt/cni/bin cni-plugins-linux-amd64-v1.5.1.tgz
-    # install crictl
-    wget https://github.com/kubernetes-sigs/cri-tools/releases/download/v1.31.1/crictl-v1.31.1-linux-amd64.tar.gz
-    sudo tar zxvf crictl-v1.31.1-linux-amd64.tar.gz -C /usr/local/bin
-    rm -f crictl-v1.31.1-linux-amd64.tar.gz
-    # install kubeadm images for containerd
-    sudo kubeadm config images pull --cri-socket=/run/containerd/containerd.sock --kubernetes-version=v1.31.0
   elif [ "$arch" = "arm64" ]; then
     # install containerd from the official binaries
     wget https://github.com/containerd/containerd/releases/download/v1.7.21/containerd-1.7.21-linux-arm64.tar.gz
@@ -57,12 +51,6 @@ if [ "$cri" = "containerd" ]; then
     wget https://github.com/containernetworking/plugins/releases/download/v1.5.1/cni-plugins-linux-arm64-v1.5.1.tgz
     sudo mkdir -p /opt/cni/bin
     sudo tar Cxzvf /opt/cni/bin cni-plugins-linux-arm64-v1.5.1.tgz
-    # install crictl
-    wget https://github.com/kubernetes-sigs/cri-tools/releases/download/v1.31.1/crictl-v1.31.1-linux-arm64.tar.gz
-    sudo tar zxvf crictl-v1.31.1-linux-arm64.tar.gz -C /usr/local/bin
-    rm -f crictl-v1.31.1-linux-arm64.tar.gz
-    # install kubeadm images for containerd
-    sudo kubeadm config images pull --cri-socket=/run/containerd/containerd.sock --kubernetes-version=v1.31.0
   fi
 
 elif [ "$cri" = "docker" ]; then
