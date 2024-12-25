@@ -1,9 +1,12 @@
-#!bin/sh
+#!/bin/sh
 set -euo pipefail
 
 cri=containerd
 os=debian
 arch=amd64
+containerd_version=${1:-1.7.21}
+runc_version=${2:-1.1.13}
+cni_version=${3:-1.5.1}
 
 THIS_SCRIPT_PATH=$(cd "$(dirname "$0")" && pwd)
 cd "$THIS_SCRIPT_PATH"
@@ -13,8 +16,8 @@ cd "$THIS_SCRIPT_PATH"
 if [ "$cri" = "containerd" ]; then
   if [ "$arch" = "amd64" ]; then
     # install containerd from the official binaries
-    wget https://github.com/containerd/containerd/releases/download/v1.7.21/containerd-1.7.21-linux-amd64.tar.gz
-    sudo tar Cxzvf /usr/local containerd-1.7.21-linux-amd64.tar.gz
+    wget "https://github.com/containerd/containerd/releases/download/v$containerd_version/containerd-$containerd_version-linux-amd64.tar.gz"
+    sudo tar Cxzvf /usr/local "containerd-$containerd_version-linux-amd64.tar.gz"
     sudo mkdir -p /usr/local/lib/systemd/system
     sudo wget -O /usr/local/lib/systemd/system/containerd.service https://raw.githubusercontent.com/containerd/containerd/main/containerd.service
     sudo systemctl daemon-reload
@@ -25,16 +28,16 @@ if [ "$cri" = "containerd" ]; then
     sudo sed -i 's/SystemdCgroup = false/SystemdCgroup = true/g' /etc/containerd/config.toml
     sudo systemctl restart containerd
     # install runc
-    wget https://github.com/opencontainers/runc/releases/download/v1.1.13/runc.amd64
+    wget "https://github.com/opencontainers/runc/releases/download/v$runc_version/runc.amd64"
     sudo install -m 755 runc.amd64 /usr/local/sbin/runc
     # install cni plugin
-    wget https://github.com/containernetworking/plugins/releases/download/v1.5.1/cni-plugins-linux-amd64-v1.5.1.tgz
+    wget "https://github.com/containernetworking/plugins/releases/download/v$cni_version/cni-plugins-linux-amd64-v$cni_version.tgz"
     sudo mkdir -p /opt/cni/bin
-    sudo tar Cxzvf /opt/cni/bin cni-plugins-linux-amd64-v1.5.1.tgz
+    sudo tar Cxzvf /opt/cni/bin "cni-plugins-linux-amd64-v$cni_version.tgz"
   elif [ "$arch" = "arm64" ]; then
     # install containerd from the official binaries
-    wget https://github.com/containerd/containerd/releases/download/v1.7.21/containerd-1.7.21-linux-arm64.tar.gz
-    sudo tar Cxzvf /usr/local containerd-1.7.21-linux-arm64.tar.gz
+    wget "https://github.com/containerd/containerd/releases/download/v$containerd_version/containerd-$containerd_version-linux-arm64.tar.gz"
+    sudo tar Cxzvf /usr/local "containerd-$containerd_version-linux-arm64.tar.gz"
     sudo mkdir -p /usr/local/lib/systemd/system
     sudo wget -O /usr/local/lib/systemd/system/containerd.service https://raw.githubusercontent.com/containerd/containerd/main/containerd.service
     sudo systemctl daemon-reload
@@ -45,12 +48,12 @@ if [ "$cri" = "containerd" ]; then
     sudo sed -i 's/SystemdCgroup = false/SystemdCgroup = true/g' /etc/containerd/config.toml
     sudo systemctl restart containerd
     # install runc
-    wget https://github.com/opencontainers/runc/releases/download/v1.1.13/runc.arm64
+    wget "https://github.com/opencontainers/runc/releases/download/v$runc_version/runc.arm64"
     sudo install -m 755 runc.arm64 /usr/local/sbin/runc
     # install cni plugin
-    wget https://github.com/containernetworking/plugins/releases/download/v1.5.1/cni-plugins-linux-arm64-v1.5.1.tgz
+    wget "https://github.com/containernetworking/plugins/releases/download/v$cni_version/cni-plugins-linux-arm64-v$cni_version.tgz"
     sudo mkdir -p /opt/cni/bin
-    sudo tar Cxzvf /opt/cni/bin cni-plugins-linux-arm64-v1.5.1.tgz
+    sudo tar Cxzvf /opt/cni/bin "cni-plugins-linux-arm64-v$cni_version.tgz"
   fi
 
 elif [ "$cri" = "docker" ]; then
@@ -59,7 +62,7 @@ elif [ "$cri" = "docker" ]; then
   sudo chmod a+r /etc/apt/keyrings/docker.asc
 
   echo \
-    "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docker.asc] "https://download.docker.com/linux/$os" \
+    "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docker.asc] https://download.docker.com/linux/$os \
     $(. /etc/os-release && echo "$VERSION_CODENAME") stable" | \
     sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
   sudo apt-get update
