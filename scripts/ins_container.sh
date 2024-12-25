@@ -4,9 +4,9 @@ set -euo pipefail
 cri=containerd
 os=debian
 arch=amd64
-containerd_version=${1:-1.7.21}
-runc_version=${2:-1.1.13}
-cni_version=${3:-1.5.1}
+containerd_version=${1:-2.0.1}
+runc_version=${2:-1.2.3}
+cni_version=${3:-1.6.1}
 
 THIS_SCRIPT_PATH=$(cd "$(dirname "$0")" && pwd)
 cd "$THIS_SCRIPT_PATH"
