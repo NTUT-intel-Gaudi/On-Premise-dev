@@ -8,11 +8,6 @@ sudo apt upgrade -y
 sudo install -m 0755 -d /etc/apt/keyrings
 sudo apt install -y net-tools jq apt-transport-https ca-certificates curl gpg
 
-# install systemd-resolved
-sudo apt install systemd-resolved
-sudo systemctl restart systemd-resolved
-sudo systemctl enable systemd-resolved
-
 # install kubelet kubeadm kubectl
 curl -fsSL "https://pkgs.k8s.io/core:/stable:/v$k8s_version/deb/Release.key" | sudo gpg --dearmor -o "/etc/apt/keyrings/kubernetes-apt-keyring.gpg"
 echo "deb [signed-by=/etc/apt/keyrings/kubernetes-apt-keyring.gpg] https://pkgs.k8s.io/core:/stable:/v$k8s_version/deb/ /" | sudo tee /etc/apt/sources.list.d/kubernetes.list
