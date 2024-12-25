@@ -1,11 +1,6 @@
 #!/bin/bash
 
-if [ -z "$1" ]; then
-  echo "Usage: $0 <k8s_version>"
-  exit 1
-fi
-
-k8s_version=$1
+k8s_version=${1:-1.32}
 read -p "installing k8s with version: $k8s_version..."
 
 sudo apt update -y
@@ -19,8 +14,8 @@ sudo systemctl restart systemd-resolved
 sudo systemctl enable systemd-resolved
 
 # install kubelet kubeadm kubectl
-curl -fsSL "https://pkgs.k8s.io/core:/stable:/$k8s_version/deb/Release.key" | sudo gpg --dearmor -o "/etc/apt/keyrings/kubernetes-$k8s_version-apt-keyring.gpg"
-echo "deb [signed-by=/etc/apt/keyrings/kubernetes-$k8s_version-apt-keyring.gpg] https://pkgs.k8s.io/core:/stable:/$k8s_version/deb/ /" | sudo tee /etc/apt/sources.list.d/kubernetes.list
+curl -fsSL "https://pkgs.k8s.io/core:/stable:/v$k8s_version/deb/Release.key" | sudo gpg --dearmor -o "/etc/apt/keyrings/kubernetes-apt-keyring.gpg"
+echo "deb [signed-by=/etc/apt/keyrings/kubernetes-apt-keyring.gpg] https://pkgs.k8s.io/core:/stable:/v$k8s_version/deb/ /" | sudo tee /etc/apt/sources.list.d/kubernetes.list
 
 sudo apt-get update -y
 sudo apt-get install -y kubelet kubeadm kubectl
